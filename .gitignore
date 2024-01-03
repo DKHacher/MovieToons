@@ -25,5 +25,4 @@ replay_pid*
 *.xml
 .idea/MovieToons.iml
 .idea/workspace.xml
-/.idea/
-.idea/workspace.xml
+.idea/*
