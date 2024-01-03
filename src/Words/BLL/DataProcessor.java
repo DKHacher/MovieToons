@@ -1,4 +1,4 @@
-package Words.Bll;
+package Words.BLL;
 
 public class DataProcessor {
     public String personalizedMessage(String age, String name){

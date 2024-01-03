@@ -24,3 +24,6 @@ hs_err_pid*
 replay_pid*
 *.xml
 .idea/MovieToons.iml
+.idea/workspace.xml
+.idea/workspace.xml
+*.xml

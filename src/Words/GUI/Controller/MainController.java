@@ -1,11 +1,11 @@
-package Words.Gui;
+package Words.GUI.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import Words.Bll.DataProcessor;
+import Words.BLL.DataProcessor;
 
 public class MainController {
     @FXML
