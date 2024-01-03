@@ -1,0 +1,23 @@
+CREATE TABLE Movie (
+    id int,
+    name nvarchar(255),
+    ratingIMDB decimal,
+    ratingPersonal decimal,
+    fileLink nvarchar(MAX),
+    lastView datetime
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Category (
+    id int,
+    name nvarchar(255)
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE CatMovie (
+    movieId int,
+    categoryId int
+    primary key (movieId, categoryId)
+);
+
+
