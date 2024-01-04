@@ -26,7 +26,7 @@ replay_pid*
 .idea/MovieToons.iml
 .idea/workspace.xml
 /.idea/
-.idea/workspace.xml
 
 config/config.settings/
 config/config.settings
+/out/
