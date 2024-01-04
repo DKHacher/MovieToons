@@ -1,8 +1,8 @@
 CREATE TABLE Movie (
     id int,
     name nvarchar(255),
-    ratingIMDB decimal,
-    ratingPersonal decimal,
+    ratingIMDB int,
+    ratingPersonal int,
     fileLink nvarchar(MAX),
     lastView datetime
     PRIMARY KEY (id)
@@ -20,4 +20,18 @@ CREATE TABLE CatMovie (
     primary key (movieId, categoryId)
 );
 
+drop table Movie
 
+drop table CatMovie
+
+
+insert into Category values
+    (0, 'Action'),
+    (1, 'Comedy'),
+    (2, 'Romance'),
+    (3, 'Drama'),
+    (4, 'Horror'),
+    (5, 'Crime');
+
+
+select * from Category
