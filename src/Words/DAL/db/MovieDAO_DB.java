@@ -4,6 +4,7 @@ import Words.BE.Movie;
 import Words.DAL.IMovieDataAccess;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class MovieDAO_DB implements IMovieDataAccess {
                 int ratingIMDB = rs.getInt("ratingIMDB");
                 int ratingPersonal = rs.getInt("ratingPersonal");
                 String fileLink = rs.getString("fileLink");
-                String lastView = rs.getString("lastView");
+                LocalDateTime lastView = (LocalDateTime) rs.getObject("lastView");
 
                 Movie movie = new Movie(id, movieTitle, ratingIMDB, ratingPersonal, fileLink, lastView);
                 allMovies.add(movie);
@@ -56,8 +57,8 @@ public class MovieDAO_DB implements IMovieDataAccess {
             stmt.setString(1, movie.getMovieTitle());
             stmt.setLong(2, movie.getIMDB());
             stmt.setLong(3, movie.getPersonal());
-            stmt.setLong(4, movie.getFilePath());
-            stmt.setLong(5, movie.getLastView());
+            stmt.setString(4, movie.getFilePath());
+            stmt.setObject(5, movie.getLastView());
 
             // Run the specified SQL statement
             stmt.executeUpdate();

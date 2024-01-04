@@ -4,14 +4,16 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
 
 import java.io.File;
+import java.time.LocalDateTime;
 
 public class Movie {
 
-    private String fileLink, movieTitle, lastView;
+    private String fileLink, movieTitle;
+    private LocalDateTime lastView;
     private int id, ratingIMDB, ratingPersonal;
     private Media media;
 
-    public Movie(int id, String movieTitle, int ratingIMDB, int ratingPersonal, String fileLink, String lastView) {
+    public Movie(int id, String movieTitle, int ratingIMDB, int ratingPersonal, String fileLink, LocalDateTime lastView) {
         this.id = id;
         this.fileLink = fileLink;
         this.movieTitle = movieTitle;
@@ -43,7 +45,7 @@ public class Movie {
         return fileLink;
     }
 
-    public  getLastView() {
+    public LocalDateTime getLastView() {
         return lastView;
     }
 }
