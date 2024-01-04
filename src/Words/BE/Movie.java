@@ -48,4 +48,8 @@ public class Movie {
     public LocalDateTime getLastView() {
         return lastView;
     }
+
+    public int getId() {
+        return id;
+    }
 }
