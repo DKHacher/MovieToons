@@ -30,3 +30,4 @@ replay_pid*
 
 config/config.settings/
 config/config.settings
+.idea/workspace.xml
