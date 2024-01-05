@@ -101,6 +101,20 @@ public class MovieDAO_DB implements IMovieDataAccess {
 
     @Override
     public void deleteMovie(Movie movie) throws Exception {
+        // SQL command to delete a movie by its ID
+        String sql = "DELETE FROM Movies WHERE id = ?;";
+
+        try (Connection conn = databaseConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Bind the ID parameter
+            stmt.setInt(1, movie.getId());
+
+            // Execute the delete SQL statement
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new Exception("Could not delete movie.", ex);
+        }
     }
 
 }
