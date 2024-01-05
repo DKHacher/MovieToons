@@ -25,8 +25,8 @@ public class MovieDAO_DB implements IMovieDataAccess {
         {
             String sql =
                     """
-                    SELECT Movies.id, Movies.name, Movies.ratingIMDB, Movies.ratingPersonal, fileLink, lastView
-                    FROM Movies
+                    SELECT Movie.id, Movie.name, Movie.ratingIMDB, Movie.ratingPersonal, fileLink, lastView
+                    FROM Movie
                     """;
 
             ResultSet rs = stmt.executeQuery(sql);
