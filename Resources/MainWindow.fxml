@@ -13,8 +13,8 @@
       <TableView layoutX="197.0" layoutY="66.0" prefHeight="307.0" prefWidth="276.0">
         <columns>
           <TableColumn prefWidth="109.60011291503906" resizable="false" text="Name" />
-          <TableColumn prefWidth="85.5999755859375" resizable="false" text="Rating" />
-            <TableColumn prefWidth="81.60003662109375" text="Genres" />
+          <TableColumn fx:id="colRatingIMDB" prefWidth="85.5999755859375" resizable="false" text="Rating" />
+            <TableColumn fx:id="colGenre" prefWidth="81.60003662109375" text="Genres" />
         </columns>
       </TableView>
       <Button layoutX="197.0" layoutY="381.0" mnemonicParsing="false" text="New" />
@@ -37,8 +37,7 @@
       <Button layoutX="171.0" layoutY="14.0" mnemonicParsing="false" text="Search" />
       <TableView fx:id="categoriesTbl" layoutX="14.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
          <columns>
-            <TableColumn prefWidth="81.5999755859375" resizable="false" text="Name" />
-            <TableColumn prefWidth="74.4000244140625" resizable="false" text="Rating" />
+            <TableColumn fx:id="colCatType" prefWidth="157.59999408721924" resizable="false" text="Name" />
          </columns>
       </TableView>
       <TableView fx:id="allMoviesTbl" layoutX="499.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">

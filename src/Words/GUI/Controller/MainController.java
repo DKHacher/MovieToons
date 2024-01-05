@@ -32,6 +32,7 @@ public class MainController implements Initializable {
     public MainController() {
         try {
             movieModel = new MovieModel();
+            categoryModel = new CategoryModel();
         } catch (Exception e) {
             e.printStackTrace();
         }
