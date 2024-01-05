@@ -41,7 +41,7 @@
             <TableColumn prefWidth="74.4000244140625" resizable="false" text="Rating" />
          </columns>
       </TableView>
-      <TableView layoutX="499.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
+      <TableView fx:id="allMoviesTbl" layoutX="499.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
          <columns>
             <TableColumn prefWidth="157.5999755859375" resizable="false" text="Name" />
          </columns>

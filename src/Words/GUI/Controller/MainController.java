@@ -1,26 +1,47 @@
 package Words.GUI.Controller;
 
-import javafx.event.ActionEvent;
+import Words.GUI.Model.MovieModel;
+import Words.BE.Movie;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import Words.BLL.DataProcessor;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class MainController {
+
     @FXML
-    private Label messagelbl;
+    private TableView<Movie> allMoviesTbl;
     @FXML
-    private Button greetingsbtn;
+    private TableColumn <Movie, String> colTitle, colGenre;
     @FXML
-    private TextField nametxt;
-    @FXML
-    private TextField agetxt;
-    private final DataProcessor dataProcessor = new DataProcessor();
+    private TableColumn <Movie, Integer> colRatingIMDB;
 
 
-    public void displayGreetingsMessage(ActionEvent actionEvent) {
-        messagelbl.setText(dataProcessor.personalizedMessage(agetxt.getText(), nametxt.getText()));
+    private MovieModel movieModel;
+
+    public MainController() {
+        try {
+            movieModel = new MovieModel();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeTableColumns();
+        initializeModels();
+    }
+
+    private void initializeTableColumns() {
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
+    }
+
+    private void initializeModels() {
+        movieModel.loadMovies();
+        allMoviesTbl.setItems(movieModel.getObservableMovies());
 
     }
 }
