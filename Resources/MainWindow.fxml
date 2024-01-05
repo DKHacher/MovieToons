@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="421.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
+<AnchorPane prefHeight="421.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
    <children>
-      <TableView layoutX="216.0" layoutY="66.0" prefHeight="307.0" prefWidth="279.0">
+      <TableView layoutX="197.0" layoutY="66.0" prefHeight="307.0" prefWidth="276.0">
         <columns>
           <TableColumn prefWidth="109.60011291503906" resizable="false" text="Name" />
           <TableColumn prefWidth="85.5999755859375" resizable="false" text="Rating" />
             <TableColumn prefWidth="81.60003662109375" text="Genres" />
         </columns>
       </TableView>
-      <Button layoutX="216.0" layoutY="381.0" mnemonicParsing="false" text="New" />
-      <Button layoutX="266.0" layoutY="381.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="444.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="197.0" layoutY="381.0" mnemonicParsing="false" text="New" />
+      <Button layoutX="247.0" layoutY="381.0" mnemonicParsing="false" text="Edit" />
+      <Button layoutX="422.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" text="New" />
       <Button layoutX="61.0" layoutY="381.0" mnemonicParsing="false" text="Edit" />
       <Button layoutX="121.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
@@ -28,7 +28,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="216.0" layoutY="50.0" text="Movies">
+      <Label layoutX="197.0" layoutY="50.0" text="Movies">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -39,6 +39,11 @@
          <columns>
             <TableColumn prefWidth="81.5999755859375" resizable="false" text="Name" />
             <TableColumn prefWidth="74.4000244140625" resizable="false" text="Rating" />
+         </columns>
+      </TableView>
+      <TableView layoutX="499.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
+         <columns>
+            <TableColumn prefWidth="157.5999755859375" resizable="false" text="Name" />
          </columns>
       </TableView>
    </children>
