@@ -43,35 +43,60 @@ public class CategoryDAO_DB implements ICategoryDataAccess{
 
     @Override
     public Category createCategory(Category category) throws Exception {
-        // SQL command
-        String sql = "INSERT INTO Category (name) VALUES (?);";
+        try (Connection conn = databaseConnector.getConnection()) {
+            // Check for missing indexes
+            int newIndex = findMissingIndex(conn);
 
-        try (Connection conn = databaseConnector.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            // Bind parameters
-            stmt.setString(1, category.getCatType());
+            // SQL command
+            String sql = "INSERT INTO Category (id, name) VALUES (?, ?);";
 
-            // Run the specified SQL statement
-            stmt.executeUpdate();
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                // Bind the parameters
+                stmt.setInt(1, newIndex);
+                stmt.setString(2, category.getCatType());
 
-            // Get the generated ID from the DB
-            ResultSet rs = stmt.getGeneratedKeys();
-
-            int id = 0;
-            if (rs.next()) {
-                id = rs.getInt(1);
+                // Run the specified SQL statement
+                stmt.executeUpdate();
+                Category createdCategory = new Category(newIndex, category.getCatType());
+                return createdCategory;
             }
 
-            Category createdCategory = new Category(id, category.getCatType());
-
-            return createdCategory;
-
         } catch (SQLException ex) {
-            // create entry in log file
             ex.printStackTrace();
             throw new Exception("Could not insert Category.", ex);
         }
     }
+
+    private int findMissingIndex(Connection conn) throws SQLException {
+        // SQL command to find missing index
+        String findMissingIndexSql = "SELECT MIN(t1.id + 1) AS missing_index " +
+                "FROM Category t1 " +
+                "LEFT JOIN Category t2 ON t1.id + 1 = t2.id " +
+                "WHERE t2.id IS NULL";
+
+        try (PreparedStatement stmt = conn.prepareStatement(findMissingIndexSql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int missingIndex = rs.getInt("missing_index");
+                return missingIndex;
+            } else {
+                // No missing index, get the next available index
+                String getMaxIndexSql = "SELECT MAX(id) + 1 AS next_index FROM Category";
+                try (PreparedStatement getMaxIndexStmt = conn.prepareStatement(getMaxIndexSql)) {
+                    ResultSet maxIndexRs = getMaxIndexStmt.executeQuery();
+
+                    if (maxIndexRs.next()) {
+                        int nextIndex = maxIndexRs.getInt("next_index");
+                        return nextIndex;
+                    }
+                }
+            }
+        }
+        // Default to -1 if something goes wrong
+        return -1;
+    }
+
 
     @Override
     public void updateCategory(Category category) throws Exception {
