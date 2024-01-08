@@ -32,4 +32,20 @@ public class CategoryModel {
         return categoriesToBeViewed;
     }
 
+    public void createNewCategory(Category newCategory) throws Exception {
+        Category c = categoryManager.createCategory(newCategory);
+        categoriesToBeViewed.add(c);
+    }
+
+    public void deleteCategory(Category selectedCategory) throws Exception {
+        categoryManager.deleteCategory(selectedCategory);
+        categoriesToBeViewed.remove(selectedCategory);
+    }
+
+    public void updateCategory(Category category, String newCatTitle) throws Exception {
+        category.setCatTitle(newCatTitle);
+        categoryManager.updateCategory(category);
+        loadCategories();
+    }
+
 }

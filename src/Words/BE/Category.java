@@ -19,4 +19,8 @@ public class Category {
     public int getId() {
         return id;
     }
+
+    public void setCatTitle(String newCatTitle) {
+        this.catType =  newCatTitle;
+    }
 }
