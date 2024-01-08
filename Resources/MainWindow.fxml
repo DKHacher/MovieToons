@@ -8,37 +8,41 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="421.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
+<AnchorPane prefHeight="421.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
    <children>
-      <TableView layoutX="216.0" layoutY="66.0" prefHeight="307.0" prefWidth="279.0">
+      <TableView layoutX="197.0" layoutY="66.0" prefHeight="307.0" prefWidth="276.0">
         <columns>
           <TableColumn prefWidth="109.60011291503906" resizable="false" text="Name" />
-          <TableColumn prefWidth="85.5999755859375" resizable="false" text="Rating" />
-            <TableColumn prefWidth="81.60003662109375" text="Genres" />
+          <TableColumn fx:id="colRatingIMDB" prefWidth="85.5999755859375" resizable="false" text="Rating" />
+            <TableColumn fx:id="colGenre" prefWidth="81.60003662109375" text="Genres" />
         </columns>
       </TableView>
-      <Button layoutX="216.0" layoutY="381.0" mnemonicParsing="false" text="New" />
-      <Button layoutX="266.0" layoutY="381.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="444.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
-      <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" text="New" />
-      <Button layoutX="61.0" layoutY="381.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="121.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="197.0" layoutY="381.0" mnemonicParsing="false" text="New" />
+      <Button layoutX="247.0" layoutY="381.0" mnemonicParsing="false" text="Edit" />
+      <Button layoutX="422.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateCategory" text="New" />
+      <Button layoutX="61.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleUpdateCategory" text="Edit" />
+      <Button layoutX="121.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteCategory" text="Delete" />
       <Label layoutX="14.0" layoutY="50.0" text="Category">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="216.0" layoutY="50.0" text="Movies">
+      <Label layoutX="197.0" layoutY="50.0" text="Movies">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <TextField layoutX="14.0" layoutY="14.0" promptText="Search" />
       <Button layoutX="171.0" layoutY="14.0" mnemonicParsing="false" text="Search" />
-      <TableView layoutX="14.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
+      <TableView fx:id="categoriesTbl" layoutX="14.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
          <columns>
-            <TableColumn prefWidth="81.5999755859375" resizable="false" text="Name" />
-            <TableColumn prefWidth="74.4000244140625" resizable="false" text="Rating" />
+            <TableColumn fx:id="colCatType" prefWidth="157.59999408721924" resizable="false" text="Name" />
+         </columns>
+      </TableView>
+      <TableView fx:id="allMoviesTbl" layoutX="499.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
+         <columns>
+            <TableColumn fx:id="colTitle" prefWidth="157.5999755859375" resizable="false" text="Name" />
          </columns>
       </TableView>
    </children>
