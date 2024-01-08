@@ -2,9 +2,11 @@ package Words.GUI.Controller;
 
 import Words.BE.Category;
 import Words.GUI.Model.CategoryModel;
-import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+
 
 public class CategoryEditController {
 
@@ -18,31 +20,27 @@ public class CategoryEditController {
     }
 
     @FXML
-    private void handleClose() {
-        closeWindow();
+    private void handleClose(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((javafx.scene.control.Button) actionEvent.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     @FXML
-    private void handleSave() {
-        saveCategory();
-    }
-
-    private void saveCategory() {
+    private void handleSave(ActionEvent actionEvent) {
         String newCatTitle = txtNewCatTitle.getText();
 
         if (categoryModel != null && selectedCategory != null) {
             try {
                 categoryModel.updateCategory(selectedCategory, newCatTitle);
-                Platform.exit();
+
+                Stage stage = (Stage) ((javafx.scene.control.Button) actionEvent.getSource()).getScene().getWindow();
+                stage.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void closeWindow() {
-        Platform.exit();
-    }
 
     public void setSelectedCategory(Category selectedCategory) {
         this.selectedCategory = selectedCategory;

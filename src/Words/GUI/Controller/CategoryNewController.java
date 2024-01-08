@@ -3,9 +3,10 @@ package Words.GUI.Controller;
 
 import Words.BE.Category;
 import Words.GUI.Model.CategoryModel;
-import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class CategoryNewController {
 
@@ -19,31 +20,26 @@ public class CategoryNewController {
 
 
     @FXML
-    private void handleSave() {
-        saveCategory();
-    }
-
-    @FXML
-    private void handleClose() {
-        closeWindow();
-    }
-
-
-
-    private void saveCategory() {
+    private void handleSave(ActionEvent actionEvent) {
         try {
             String title = txtNewCat.getText();
 
             Category newCategory = new Category(-1, title);
             categoryModel.createNewCategory(newCategory);
+
+            Stage stage = (Stage) ((javafx.scene.control.Button) actionEvent.getSource()).getScene().getWindow();
+            stage.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
-    private void closeWindow() {
-        Platform.exit();
+    @FXML
+    private void handleClose(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((javafx.scene.control.Button) actionEvent.getSource()).getScene().getWindow();
+        stage.close();
     }
+
 
 }
