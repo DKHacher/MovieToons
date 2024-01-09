@@ -36,7 +36,7 @@ public class MovieModel {
     public void searchMovie(String query) throws Exception {
         List<Movie> searchResults = movieManager.searchMovies(query);
         moviesToBeViewed.clear();
-        moviesToBeViewed.addAll(SearchResult);
+        moviesToBeViewed.addAll(searchResults);
     }
 
 

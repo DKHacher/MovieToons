@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -34,6 +31,8 @@ public class MainController implements Initializable {
     private TableColumn <Movie, Integer> colRatingIMDB;
     @FXML
     private TableColumn <Category, String> colCatType;
+    @FXML
+    private TextField txtMovieSearch;
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;
@@ -47,6 +46,8 @@ public class MainController implements Initializable {
         }
     }
 
+
+    //Initialize Methods
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeTableColumns();
         initializeModels();
@@ -82,6 +83,11 @@ public class MainController implements Initializable {
 
     //FXML
     @FXML
+    private void handleCreateMovie() {
+        openMovieNew();
+    }
+
+    @FXML
     private void handleCreateCategory() {
         openCategoryNew();
     }
@@ -98,9 +104,25 @@ public class MainController implements Initializable {
 
 
     //Methods
+    private void deleteCategory() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Are you sure you wish to delete this category?");
 
+        //Buttons
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Category selectedCategory = categoriesTbl.getSelectionModel().getSelectedItem();
+            if (selectedCategory != null) {
+                try {
+                    categoryModel.deleteCategory(selectedCategory);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
-
+    //Methods to open windows
     private void openCategoryEdit() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditCategory.fxml"));
@@ -151,22 +173,26 @@ public class MainController implements Initializable {
         }
     }
 
-    private void deleteCategory() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("Are you sure you wish to delete this category?");
+    private void openMovieNew() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/NewMovie.fxml"));
+            Parent root = loader.load();
 
-        //Buttons
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            Category selectedCategory = categoriesTbl.getSelectionModel().getSelectedItem();
-            if (selectedCategory != null) {
-                try {
-                    categoryModel.deleteCategory(selectedCategory);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("New Movie");
+
+            NewMovieController newMovieController = loader.getController();
+            newMovieController.setManager(movieModel);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.setResizable(false);
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
 }
