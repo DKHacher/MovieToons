@@ -76,7 +76,7 @@ public class MovieDAO_DB implements IMovieDataAccess {
     @Override
     public Movie createMovie(Movie movie) throws Exception {
         // SQL command
-        String sql = "INSERT INTO Movies (name, ratingIMDB, ratingPersonal, fileLink, lastView) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO Movie (name, ratingIMDB, ratingPersonal, fileLink, lastView) VALUES (?, ?, ?, ?, ?);";
 
         try (Connection conn = databaseConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
