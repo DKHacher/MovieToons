@@ -23,6 +23,18 @@ public class MovieModel {
         moviesToBeViewed.add(m);
     }
 
+    public void deleteMovie(Movie selectedMovie) throws Exception {
+        movieManager.deleteMovie(selectedMovie);
+        moviesToBeViewed.remove(selectedMovie);
+    }
+
+    public void updateMovie(Movie movie, String newMovieTitle, int newRatingIMDB, int newRatingPersonal, String newFilePath) {
+        movie.setMovieTitle(newMovieTitle);
+        movie.setRatingIMDB(newRatingIMDB);
+        movie.setRatingPersonal(newRatingPersonal);
+        movie.setFilePath(newFilePath);
+    }
+
     public void loadMovies() {
         try {
             moviesToBeViewed.clear();

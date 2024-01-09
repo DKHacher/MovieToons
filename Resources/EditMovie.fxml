@@ -11,8 +11,8 @@
 <AnchorPane prefHeight="376.0" prefWidth="337.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.EditMovieController">
    <children>
       <TextField fx:id="txtNewMovieTitle" layoutX="15.0" layoutY="32.0" promptText="Title" />
-      <ComboBox layoutX="14.0" layoutY="81.0" prefHeight="26.0" prefWidth="103.0" promptText="Pick Genre" />
-      <ListView layoutX="14.0" layoutY="114.0" prefHeight="171.0" prefWidth="308.0" />
+      <ComboBox fx:id="cmbNewGenres" layoutX="14.0" layoutY="81.0" prefHeight="26.0" prefWidth="103.0" promptText="Pick Genre" />
+      <ListView fx:id="lvSelectedNewGenres" layoutX="14.0" layoutY="114.0" prefHeight="171.0" prefWidth="308.0" />
       <Button layoutX="232.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleClose" text="Close" />
       <Button layoutX="282.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
       <TextField fx:id="intNewPersonalRating" layoutX="14.0" layoutY="304.0" promptText="Rating" />
@@ -37,8 +37,8 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="123.0" layoutY="81.0" mnemonicParsing="false" text="+" />
-      <Button layoutX="152.0" layoutY="81.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="25.0" text="-" />
+      <Button layoutX="123.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleAddGenre" text="+" />
+      <Button layoutX="152.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleRemoveGenre" prefHeight="26.0" prefWidth="25.0" text="-" />
       <TextField fx:id="txtNewFilePath" layoutX="173.0" layoutY="32.0" prefHeight="26.0" prefWidth="110.0" promptText="File" />
       <Label layoutX="173.0" layoutY="14.0" text="File Path:">
          <font>

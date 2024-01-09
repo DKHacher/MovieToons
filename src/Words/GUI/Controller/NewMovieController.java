@@ -26,13 +26,7 @@ public class NewMovieController implements Initializable {
     private CategoryModel categoryModel;
 
     @FXML
-    private TextField txtMovieTitle;
-    @FXML
-    private TextField txtFilePath;
-    @FXML
-    private TextField txtRatingIMDB;
-    @FXML
-    private TextField txtRatingPersonal;
+    private TextField txtMovieTitle, txtFilePath, txtRatingIMDB, txtRatingPersonal;
     @FXML
     private ComboBox<Category> cmbGenres;
     @FXML

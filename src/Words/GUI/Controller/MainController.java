@@ -231,7 +231,6 @@ public class MainController implements Initializable {
 
                 EditMovieController editMovieController = loader.getController();
                 editMovieController.setSelectedMovie(selectedMovie);
-                editMovieController.setManager(movieModel);
 
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
