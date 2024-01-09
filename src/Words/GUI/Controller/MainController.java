@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -31,6 +32,8 @@ public class MainController implements Initializable {
     private TableColumn <Movie, String> colTitleAll, colGenreAll, colTitle, colGenre;
     @FXML
     private TableColumn <Movie, Integer> colRatingIMDBAll, colRatingPersonalAll, colRatingIMDB, colRatingPersonal;
+    @FXML
+    private TableColumn <Movie, Timestamp> colLastView, colLastViewAll;
     @FXML
     private TableColumn <Category, String> colCatType;
     @FXML
@@ -61,11 +64,13 @@ public class MainController implements Initializable {
         colTitle.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
         colRatingIMDB.setCellValueFactory(new PropertyValueFactory<>("ratingIMDB"));
         colRatingPersonal.setCellValueFactory(new PropertyValueFactory<>("ratingPersonal"));
+        colLastView.setCellValueFactory(new  PropertyValueFactory<>("lastView"));
 
         //All movies
         colTitleAll.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
         colRatingIMDBAll.setCellValueFactory(new PropertyValueFactory<>("ratingIMDB"));
         colRatingPersonalAll.setCellValueFactory(new PropertyValueFactory<>("ratingPersonal"));
+        colLastViewAll.setCellValueFactory(new PropertyValueFactory<>("lastView"));
 
         //categories
         colCatType.setCellValueFactory(new PropertyValueFactory<>("catType"));
