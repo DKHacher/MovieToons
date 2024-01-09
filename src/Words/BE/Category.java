@@ -20,7 +20,13 @@ public class Category {
         return id;
     }
 
-    public void setCatTitle(String newCatTitle) {
-        this.catType =  newCatTitle;
+    public void setCatType(String newCatType) {
+        this.catType =  newCatType;
     }
+
+    @Override
+    public String toString() {
+        return catType;
+    }
+
 }

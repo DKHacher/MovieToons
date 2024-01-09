@@ -202,7 +202,6 @@ public class MainController implements Initializable {
             stage.setTitle("New Movie");
 
             NewMovieController newMovieController = loader.getController();
-            newMovieController.setManager(movieModel);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);

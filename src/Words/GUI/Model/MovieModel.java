@@ -5,7 +5,6 @@ import Words.BLL.MovieManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javax.naming.directory.SearchResult;
 import java.util.List;
 
 public class MovieModel {
@@ -17,6 +16,11 @@ public class MovieModel {
         movieManager = new MovieManager();
         moviesToBeViewed = FXCollections.observableArrayList();
         moviesToBeViewed.addAll(movieManager.getAllMovies());
+    }
+
+    public void createNewMovie(Movie newMovie) throws Exception {
+        Movie m = movieManager.createMovie(newMovie);
+        moviesToBeViewed.add(m);
     }
 
     public void loadMovies() {

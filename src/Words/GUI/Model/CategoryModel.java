@@ -43,7 +43,7 @@ public class CategoryModel {
     }
 
     public void updateCategory(Category category, String newCatTitle) throws Exception {
-        category.setCatTitle(newCatTitle);
+        category.setCatType(newCatTitle);
         categoryManager.updateCategory(category);
         loadCategories();
     }
