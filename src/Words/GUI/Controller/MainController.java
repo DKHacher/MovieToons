@@ -27,7 +27,7 @@ public class MainController implements Initializable {
     @FXML
     private TableView<Category> categoriesTbl;
     @FXML
-    private TableView<Movie> moviesTbl;
+    private TableView<Movie> catMoviesTbl;
     @FXML
     private TableColumn <Movie, String> colTitleAll, colGenreAll, colTitle, colGenre;
     @FXML
@@ -108,7 +108,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void handleEditMovie() {
-        openMovieEdit(moviesTbl);
+        openMovieEdit(catMoviesTbl);
     }
 
     @FXML
@@ -205,8 +205,6 @@ public class MainController implements Initializable {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("New Movie");
-
-            NewMovieController newMovieController = loader.getController();
 
             Scene scene = new Scene(root);
             stage.setScene(scene);

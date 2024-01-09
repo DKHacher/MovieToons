@@ -67,7 +67,7 @@ public class NewMovieController implements Initializable {
             if (isValidMediaFile(originalFilePath)) {
                 //Copy the file to the data folder
                 File originalFile = new File(originalFilePath);
-                File dataFolder = new File("Resources/Movies");
+                File dataFolder = new File("Resources/Movies/");
                 File copiedFile = new File(dataFolder, originalFile.getName());
 
                 //Perform the copy
@@ -76,7 +76,7 @@ public class NewMovieController implements Initializable {
                 }
 
                 //Update the file path with the new path in the data folder
-                String filePath = "Resources/Movies" + copiedFile.getName();
+                String filePath = "Resources/Movies/" + copiedFile.getName();
 
                 Movie newMovie = new Movie(-1, movieTitle, ratingIMDB, ratingPersonal, filePath, null);
                 movieModel.createNewMovie(newMovie);
@@ -113,9 +113,10 @@ public class NewMovieController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         //Filters for the file chooser
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Files", "*.*"),
                 new FileChooser.ExtensionFilter("MP4 Files", "*.mp4"),
-                new FileChooser.ExtensionFilter("MPEG4 Files", "*.MPEG4")
+                new FileChooser.ExtensionFilter("MPEG4 Files", "*.MPEG4"),
+                new FileChooser.ExtensionFilter("All Files", "*.*")
+
         );
 
         File selectedFile = fileChooser.showOpenDialog(((Button) actionEvent.getSource()).getScene().getWindow());
@@ -140,9 +141,6 @@ public class NewMovieController implements Initializable {
         return isValidExtension;
     }
 
-    private void addFile() {
-
-    }
     @FXML
     private void handleClose(ActionEvent actionEvent) {
         Stage stage = (Stage) ((javafx.scene.control.Button) actionEvent.getSource()).getScene().getWindow();
@@ -165,4 +163,6 @@ public class NewMovieController implements Initializable {
 
         System.out.println("Unsupported file format. Please select a valid media file.");
     }
+
+
 }

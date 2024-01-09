@@ -75,40 +75,79 @@ public class MovieDAO_DB implements IMovieDataAccess {
 
     @Override
     public Movie createMovie(Movie movie) throws Exception {
-        String sql = "INSERT INTO Movie (name, ratingIMDB, ratingPersonal, fileLink, lastView) VALUES (?, ?, ?, ?, ?);";
+        try (Connection conn = databaseConnector.getConnection()) {
+            // Check for missing indexes
+            int newMovieId = findMissingMovieIndex(conn);
 
-        try (Connection conn = databaseConnector.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            // Bind parameters
-            stmt.setString(1, movie.getMovieTitle());
-            stmt.setInt(2, movie.getRatingIMDB());
-            stmt.setInt(3, movie.getRatingPersonal());
-            stmt.setString(4, movie.getFilePath());
+            // SQL command
+            String sql = "INSERT INTO Movie (id, name, ratingIMDB, ratingPersonal, fileLink, lastView) VALUES (?, ?, ?, ?, ?, ?);";
 
-            // Check if lastView is null before setting it
-            if (movie.getLastView() != null) {
-                stmt.setTimestamp(5, movie.getLastView());
-            } else {
-                stmt.setNull(5, Types.TIMESTAMP);
+            try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                // Bind parameters
+                stmt.setInt(1, newMovieId);
+                stmt.setString(2, movie.getMovieTitle());
+                stmt.setInt(3, movie.getRatingIMDB());
+                stmt.setInt(4, movie.getRatingPersonal());
+                stmt.setString(5, movie.getFilePath());
+
+                // Check if lastView is null before setting it
+                if (movie.getLastView() != null) {
+                    stmt.setTimestamp(6, movie.getLastView());
+                } else {
+                    stmt.setNull(6, Types.TIMESTAMP);
+                }
+
+                // Run the specified SQL statement
+                stmt.executeUpdate();
+
+                // Get the generated ID from the DB
+                ResultSet rs = stmt.getGeneratedKeys();
+
+                int id = 0;
+                if (rs.next()) {
+                    id = rs.getInt(1);
+                }
+
+                return new Movie(id, movie.getMovieTitle(), movie.getRatingIMDB(), movie.getRatingPersonal(), movie.getFilePath(), movie.getLastView());
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                throw new Exception("Could not insert movie.", ex);
             }
-
-            // Run the specified SQL statement
-            stmt.executeUpdate();
-
-            // Get the generated ID from the DB
-            ResultSet rs = stmt.getGeneratedKeys();
-
-            int id = 0;
-            if (rs.next()) {
-                id = rs.getInt(1);
-            }
-
-            return new Movie(id, movie.getMovieTitle(), movie.getRatingIMDB(), movie.getRatingPersonal(), movie.getFilePath(), movie.getLastView());
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            throw new Exception("Could not insert movie.", ex);
         }
     }
+
+
+    private int findMissingMovieIndex(Connection conn) throws SQLException {
+        // SQL command to find missing index
+        String findMissingIndexSql = "SELECT MIN(t1.id + 1) AS missing_index " +
+                "FROM Movie t1 " +
+                "LEFT JOIN Movie t2 ON t1.id + 1 = t2.id " +
+                "WHERE t2.id IS NULL";
+
+        try (PreparedStatement stmt = conn.prepareStatement(findMissingIndexSql)) {
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int missingIndex = rs.getInt("missing_index");
+                return missingIndex;
+            } else {
+                // No missing index, get the next available index
+                String getMaxIndexSql = "SELECT MAX(id) + 1 AS next_index FROM Movie";
+                try (PreparedStatement getMaxIndexStmt = conn.prepareStatement(getMaxIndexSql)) {
+                    ResultSet maxIndexRs = getMaxIndexStmt.executeQuery();
+
+                    if (maxIndexRs.next()) {
+                        int nextIndex = maxIndexRs.getInt("next_index");
+                        return nextIndex;
+                    }
+                }
+            }
+        }
+
+        // Default to -1 if something goes wrong
+        return -1;
+    }
+
 
     @Override
     public void updateMovie(Movie movie) throws Exception {
