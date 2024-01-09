@@ -90,8 +90,13 @@ public class MainController implements Initializable {
     }
 
     @FXML
+    private void handleEditAllMovies() {
+        openMovieEdit(allMoviesTbl);
+    }
+
+    @FXML
     private void handleEditMovie() {
-        openMovieEdit();
+        openMovieEdit(moviesTbl);
     }
 
     @FXML
@@ -203,30 +208,41 @@ public class MainController implements Initializable {
         }
     }
 
-    private void openMovieEdit() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditMovie.fxml"));
-            Parent root = loader.load();
+    private void openMovieEdit(TableView<Movie> tableView) {
+        Movie selectedMovie = tableView.getSelectionModel().getSelectedItem();
 
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Edit Movie");
+        if (selectedMovie != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditMovie.fxml"));
+                Parent root = loader.load();
 
-            EditMovieController editMovieController = loader.getController();
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Edit Movie");
 
-            Movie selectedMovie = moviesTbl.getSelectionModel().getSelectedItem();
-            editMovieController.setSelectedMovie(selectedMovie);
+                EditMovieController editMovieController = loader.getController();
+                editMovieController.setSelectedMovie(selectedMovie);
+                editMovieController.setManager(movieModel);
 
-            editMovieController.setManager(movieModel);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-
-            stage.setResizable(false);
-            stage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+                stage.setResizable(false);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            noMovieAlert();
         }
+    }
+
+    private void noMovieAlert() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("No Movie Selected");
+        alert.setHeaderText("No movie selected!");
+        alert.setContentText("Please select a movie.");
+
+        alert.showAndWait();
     }
 }

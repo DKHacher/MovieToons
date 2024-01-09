@@ -50,5 +50,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Button layoutX="499.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleEditAllMovies" text="Edit" />
    </children>
 </AnchorPane>

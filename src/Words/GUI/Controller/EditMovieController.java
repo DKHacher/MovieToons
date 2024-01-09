@@ -24,6 +24,11 @@ public class EditMovieController {
         stage.close();
     }
 
+    @FXML
+    private void handleSave(ActionEvent actionEvent) {
+
+    }
+
     public void setSelectedMovie(Movie selectedMovie) {
         this.selectedMovie = selectedMovie;
         if (selectedMovie != null) {
@@ -33,4 +38,5 @@ public class EditMovieController {
             txtNewFilePath.setText(selectedMovie.getFilePath());
         }
     }
+
 }
