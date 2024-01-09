@@ -40,7 +40,7 @@ public class MovieDAO_DB implements IMovieDataAccess {
                 String fileLink = rs.getString("fileLink");
                 Timestamp lastView = (Timestamp) rs.getObject("lastView");
 
-                Movie movie = new Movie(id, movieTitle, ratingIMDB, ratingPersonal, fileLink, lastView, getAllCategoriesInMovie(id, conn));
+                Movie movie = new Movie(id, movieTitle, ratingIMDB, ratingPersonal, fileLink, lastView);
                 allMovies.add(movie);
             }}
         return allMovies;
@@ -75,17 +75,22 @@ public class MovieDAO_DB implements IMovieDataAccess {
 
     @Override
     public Movie createMovie(Movie movie) throws Exception {
-        // SQL command
         String sql = "INSERT INTO Movie (name, ratingIMDB, ratingPersonal, fileLink, lastView) VALUES (?, ?, ?, ?, ?);";
 
         try (Connection conn = databaseConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             // Bind parameters
             stmt.setString(1, movie.getMovieTitle());
-            stmt.setString(2, movie.getRatingIMDB());
-            stmt.setString(3, movie.getRatingPersonal());
+            stmt.setInt(2, movie.getRatingIMDB());
+            stmt.setInt(3, movie.getRatingPersonal());
             stmt.setString(4, movie.getFilePath());
-            stmt.setObject(5, movie.getLastView());
+
+            // Check if lastView is null before setting it
+            if (movie.getLastView() != null) {
+                stmt.setTimestamp(5, movie.getLastView());
+            } else {
+                stmt.setNull(5, Types.TIMESTAMP);
+            }
 
             // Run the specified SQL statement
             stmt.executeUpdate();
@@ -98,12 +103,8 @@ public class MovieDAO_DB implements IMovieDataAccess {
                 id = rs.getInt(1);
             }
 
-            //Movie createdMovie = new Movie(id, movie.getMovieTitle(), movie.getIMDB(), movie.getPersonal(), movie.getFilePath(), movie.getLastView());
-            Movie createdMovie = new Movie(0, null, 0, 0, null, null, null);
-
-            return createdMovie;
+            return new Movie(id, movie.getMovieTitle(), movie.getRatingIMDB(), movie.getRatingPersonal(), movie.getFilePath(), movie.getLastView());
         } catch (SQLException ex) {
-            // create entry in log file
             ex.printStackTrace();
             throw new Exception("Could not insert movie.", ex);
         }

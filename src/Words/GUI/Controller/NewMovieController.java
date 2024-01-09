@@ -9,18 +9,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ResourceBundle;
 
 
 public class NewMovieController implements Initializable {
@@ -62,18 +59,34 @@ public class NewMovieController implements Initializable {
     private void handleSave(ActionEvent actionEvent) {
         try {
             String movieTitle = txtMovieTitle.getText();
-            String filePath = txtFilePath.getText();
+            String originalFilePath = txtFilePath.getText();
             int ratingIMDB = Integer.parseInt(txtRatingIMDB.getText());
             int ratingPersonal = Integer.parseInt(txtRatingPersonal.getText());
-            ArrayList<Category> selectedGenresList = new ArrayList<>(selectedGenres);
+            //ArrayList<Category> selectedGenresList = new ArrayList<>(selectedGenres);
 
-            Movie newMovie = new Movie(0, movieTitle, ratingIMDB, ratingPersonal, filePath, null, selectedGenresList);
+            if (isValidMediaFile(originalFilePath)) {
+                //Copy the file to the data folder
+                File originalFile = new File(originalFilePath);
+                File dataFolder = new File("Resources/Movies");
+                File copiedFile = new File(dataFolder, originalFile.getName());
 
-            movieModel.createNewMovie(newMovie);
+                //Perform the copy
+                if (!copiedFile.exists()) {;
+                    Files.copy(originalFile.toPath(), copiedFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }
 
-            Stage stage = (Stage) ((javafx.scene.control.Button) actionEvent.getSource()).getScene().getWindow();
-            stage.close();
+                //Update the file path with the new path in the data folder
+                String filePath = "Resources/Movies" + copiedFile.getName();
 
+                Movie newMovie = new Movie(-1, movieTitle, ratingIMDB, ratingPersonal, filePath, null);
+                movieModel.createNewMovie(newMovie);
+
+                //Close the window
+                Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+                stage.close();
+            } else {
+                alertFile();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -98,24 +111,38 @@ public class NewMovieController implements Initializable {
     @FXML
     private void handleChooseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("MP4 files (*.mp4)", "*.mp4"));
+        //Filters for the file chooser
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Files", "*.*"),
+                new FileChooser.ExtensionFilter("MP4 Files", "*.mp4"),
+                new FileChooser.ExtensionFilter("MPEG4 Files", "*.MPEG4")
+        );
 
-        File selectedFile = fileChooser.showOpenDialog(null);
-
+        File selectedFile = fileChooser.showOpenDialog(((Button) actionEvent.getSource()).getScene().getWindow());
         if (selectedFile != null) {
-            String destinationPath = "Resources/movies/" + selectedFile.getName();
-            File destinationFile = new File(destinationPath);
+            // Set the chosen file path to the txtFile TextField
+            txtFilePath.setText(selectedFile.getAbsolutePath());
 
-            try {
-                // Copy the selected file to the destination path
-                java.nio.file.Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            txtFilePath.setText(destinationPath);
+            boolean isValidFile = isValidMediaFile(selectedFile.getAbsolutePath());
+            System.out.println("Is Valid File: " + isValidFile);
         }
     }
 
+    private boolean isValidMediaFile(String filePath) {
+        File file = new File(filePath);
+
+        System.out.println("Selected File: " + filePath);
+        System.out.println("File Size: " + file.length() + " bytes");
+
+        boolean isValidExtension = filePath.toLowerCase().endsWith(".mp4") || filePath.toLowerCase().endsWith(".MPEG4");
+        System.out.println("Is Valid Extension: " + isValidExtension);
+
+        return isValidExtension;
+    }
+
+    private void addFile() {
+
+    }
     @FXML
     private void handleClose(ActionEvent actionEvent) {
         Stage stage = (Stage) ((javafx.scene.control.Button) actionEvent.getSource()).getScene().getWindow();
@@ -131,4 +158,11 @@ public class NewMovieController implements Initializable {
         }
     }
 
+    private void alertFile() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Unsupported file format. Please select a valid media file.");
+        alert.showAndWait();
+
+        System.out.println("Unsupported file format. Please select a valid media file.");
+    }
 }

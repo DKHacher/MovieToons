@@ -15,14 +15,14 @@ public class Movie {
     private Media media;
     private ArrayList<Words.BE.Category> Categories;
 
-    public Movie(int id, String movieTitle, int ratingIMDB, int ratingPersonal, String fileLink, Timestamp lastView, ArrayList<Category> categories) {
+    public Movie(int id, String movieTitle, int ratingIMDB, int ratingPersonal, String fileLink, Timestamp lastView) {
         this.id = id;
         this.fileLink = fileLink;
         this.movieTitle = movieTitle;
         this.ratingIMDB = ratingIMDB;
         this.ratingPersonal = ratingPersonal;
         this.lastView = lastView;
-        this.Categories = categories;
+        //this.Categories = categories;
 
         try {
             this.media = new Media(new File(fileLink).toURI().toString());
@@ -36,12 +36,12 @@ public class Movie {
         return movieTitle;
     }
 
-    public String getRatingIMDB() {
-        return ratingIMDB + "/10";
+    public int getRatingIMDB() {
+        return ratingIMDB;
     }
 
-    public String getRatingPersonal() {
-        return ratingPersonal + "/10";
+    public int getRatingPersonal() {
+        return ratingPersonal;
     }
 
     public String getFilePath() {
@@ -54,5 +54,9 @@ public class Movie {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

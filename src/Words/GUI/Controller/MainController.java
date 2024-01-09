@@ -54,8 +54,8 @@ public class MainController implements Initializable {
 
     //Initialize Methods
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        initializeTableColumns();
         initializeModels();
+        initializeTableColumns();
         initializeSearchListener();
     }
 
