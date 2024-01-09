@@ -28,9 +28,9 @@ public class MainController implements Initializable {
     @FXML
     private TableView<Movie> moviesTbl;
     @FXML
-    private TableColumn <Movie, String> colTitle, colGenre;
+    private TableColumn <Movie, String> colTitleAll, colGenreAll;
     @FXML
-    private TableColumn <Movie, Integer> colRatingIMDB;
+    private TableColumn <Movie, Integer> colRatingIMDBAll, colRatingPersonalAll;
     @FXML
     private TableColumn <Category, String> colCatType;
     @FXML
@@ -58,7 +58,9 @@ public class MainController implements Initializable {
 
     private void initializeTableColumns() {
         //movies
-        colTitle.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
+        colTitleAll.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
+        colRatingIMDBAll.setCellValueFactory(new PropertyValueFactory<>("ratingIMDB"));
+        colRatingPersonalAll.setCellValueFactory(new PropertyValueFactory<>("ratingPersonal"));
 
         //categories
         colCatType.setCellValueFactory(new PropertyValueFactory<>("catType"));

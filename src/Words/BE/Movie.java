@@ -36,12 +36,12 @@ public class Movie {
         return movieTitle;
     }
 
-    public int getIMDB() {
-        return ratingIMDB;
+    public String getRatingIMDB() {
+        return ratingIMDB + "/10";
     }
 
-    public int getPersonal() {
-        return ratingPersonal;
+    public String getRatingPersonal() {
+        return ratingPersonal + "/10";
     }
 
     public String getFilePath() {

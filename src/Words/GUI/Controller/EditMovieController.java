@@ -33,8 +33,8 @@ public class EditMovieController {
         this.selectedMovie = selectedMovie;
         if (selectedMovie != null) {
             txtNewMovieTitle.setText(selectedMovie.getMovieTitle());
-            intNewPersonalRating.setText(String.valueOf(selectedMovie.getPersonal()));
-            intNewIMDBRating.setText(String.valueOf(selectedMovie.getIMDB()));
+            intNewPersonalRating.setText(String.valueOf(selectedMovie.getRatingPersonal()));
+            intNewIMDBRating.setText(String.valueOf(selectedMovie.getRatingIMDB()));
             txtNewFilePath.setText(selectedMovie.getFilePath());
         }
     }

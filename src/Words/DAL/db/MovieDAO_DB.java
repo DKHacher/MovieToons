@@ -82,8 +82,8 @@ public class MovieDAO_DB implements IMovieDataAccess {
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             // Bind parameters
             stmt.setString(1, movie.getMovieTitle());
-            stmt.setLong(2, movie.getIMDB());
-            stmt.setLong(3, movie.getPersonal());
+            stmt.setString(2, movie.getRatingIMDB());
+            stmt.setString(3, movie.getRatingPersonal());
             stmt.setString(4, movie.getFilePath());
             stmt.setObject(5, movie.getLastView());
 

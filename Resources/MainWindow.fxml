@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="421.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
+<AnchorPane prefHeight="421.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
    <children>
       <TableView fx:id="moviesTbl" layoutX="197.0" layoutY="66.0" prefHeight="307.0" prefWidth="282.0">
         <columns>
@@ -40,9 +40,12 @@
             <TableColumn fx:id="colCatType" prefWidth="157.59999408721924" resizable="false" text="Name" />
          </columns>
       </TableView>
-      <TableView fx:id="allMoviesTbl" layoutX="499.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
+      <TableView fx:id="allMoviesTbl" layoutX="499.0" layoutY="68.0" prefHeight="307.0" prefWidth="282.0">
          <columns>
-            <TableColumn fx:id="colTitle" prefWidth="157.5999755859375" resizable="false" text="Name" />
+            <TableColumn fx:id="colTitleAll" prefWidth="89.59994506835938" resizable="false" text="Name" />
+            <TableColumn fx:id="colGenreAll" prefWidth="98.39990234375" resizable="false" text="Genres" />
+            <TableColumn fx:id="colRatingPersonalAll" prefWidth="47.2000732421875" resizable="false" text="Rating" />
+            <TableColumn fx:id="colRatingIMDBAll" prefWidth="46.4000244140625" resizable="false" text="IMDB" />
          </columns>
       </TableView>
       <Label layoutX="499.0" layoutY="50.0" text="All Movies">
