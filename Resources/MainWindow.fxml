@@ -12,10 +12,10 @@
    <children>
       <TableView fx:id="moviesTbl" layoutX="197.0" layoutY="66.0" prefHeight="307.0" prefWidth="282.0">
         <columns>
-          <TableColumn prefWidth="100.80000305175781" resizable="false" text="Name" />
+          <TableColumn fx:id="colTitle" prefWidth="100.80000305175781" resizable="false" text="Name" />
             <TableColumn fx:id="colGenre" prefWidth="91.20001220703125" text="Genres" />
-          <TableColumn fx:id="colRatingIMDB" prefWidth="43.199951171875" resizable="false" text="Rating" />
-            <TableColumn fx:id="colRatingIMDB1" prefWidth="44.79996337890623" resizable="false" text="IMDB" />
+          <TableColumn fx:id="colRatingPersonal" prefWidth="43.199951171875" resizable="false" text="Rating" />
+            <TableColumn fx:id="colRatingIMDB" prefWidth="44.79996337890623" resizable="false" text="IMDB" />
         </columns>
       </TableView>
       <Button layoutX="197.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateMovie" text="New" />
