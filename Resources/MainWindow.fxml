@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="421.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
    <children>
-      <TableView layoutX="197.0" layoutY="66.0" prefHeight="307.0" prefWidth="282.0">
+      <TableView fx:id="moviesTbl" layoutX="197.0" layoutY="66.0" prefHeight="307.0" prefWidth="282.0">
         <columns>
           <TableColumn prefWidth="100.80000305175781" resizable="false" text="Name" />
             <TableColumn fx:id="colGenre" prefWidth="91.20001220703125" text="Genres" />
@@ -19,7 +19,7 @@
         </columns>
       </TableView>
       <Button layoutX="197.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateMovie" text="New" />
-      <Button layoutX="247.0" layoutY="381.0" mnemonicParsing="false" text="Edit" />
+      <Button layoutX="247.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleEditMovie" text="Edit" />
       <Button layoutX="428.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateCategory" text="New" />
       <Button layoutX="61.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleUpdateCategory" text="Edit" />
@@ -35,7 +35,6 @@
          </font>
       </Label>
       <TextField fx:id="txtMovieSearch" layoutX="14.0" layoutY="14.0" promptText="Search" />
-      <Button layoutX="171.0" layoutY="14.0" mnemonicParsing="false" text="Search" />
       <TableView fx:id="categoriesTbl" layoutX="14.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
          <columns>
             <TableColumn fx:id="colCatType" prefWidth="157.59999408721924" resizable="false" text="Name" />

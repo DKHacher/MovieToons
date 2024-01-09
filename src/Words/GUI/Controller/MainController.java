@@ -26,6 +26,8 @@ public class MainController implements Initializable {
     @FXML
     private TableView<Category> categoriesTbl;
     @FXML
+    private TableView<Movie> moviesTbl;
+    @FXML
     private TableColumn <Movie, String> colTitle, colGenre;
     @FXML
     private TableColumn <Movie, Integer> colRatingIMDB;
@@ -85,6 +87,11 @@ public class MainController implements Initializable {
     @FXML
     private void handleCreateMovie() {
         openMovieNew();
+    }
+
+    @FXML
+    private void handleEditMovie() {
+        openMovieEdit();
     }
 
     @FXML
@@ -184,6 +191,33 @@ public class MainController implements Initializable {
 
             NewMovieController newMovieController = loader.getController();
             newMovieController.setManager(movieModel);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.setResizable(false);
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openMovieEdit() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditMovie.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Edit Movie");
+
+            EditMovieController editMovieController = loader.getController();
+
+            Movie selectedMovie = moviesTbl.getSelectionModel().getSelectedItem();
+            editMovieController.setSelectedMovie(selectedMovie);
+
+            editMovieController.setManager(movieModel);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
