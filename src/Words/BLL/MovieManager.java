@@ -9,6 +9,7 @@ import java.util.List;
 public class MovieManager implements IMovieDataAccess {
 
     private IMovieDataAccess movieDAO;
+    private MovieSearcher movieSearcher = new MovieSearcher();
 
     public MovieManager() throws Exception {
         movieDAO = new MovieDAO_DB();
@@ -33,6 +34,12 @@ public class MovieManager implements IMovieDataAccess {
     @Override
     public void deleteMovie(Movie selectedMovie) throws Exception {
         movieDAO.deleteMovie(selectedMovie);
+    }
+
+    public List<Movie> searchMovies(String query) throws Exception {
+        List<Movie> allMovies = getAllMovies();
+        List<Movie> searchResult = movieSearcher.search(allMovies, query);
+        return searchResult;
     }
 
 }

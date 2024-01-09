@@ -50,6 +50,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeTableColumns();
         initializeModels();
+        initializeSearchListener();
     }
 
     private void initializeTableColumns() {
@@ -68,6 +69,15 @@ public class MainController implements Initializable {
         categoriesTbl.setItems(categoryModel.getObservableCategories());
     }
 
+    private void initializeSearchListener() {
+        txtMovieSearch.textProperty().addListener((observableValue, oldValue, newValue) -> {
+           try {
+                movieModel.searchMovie(newValue);
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+        });
+    }
 
 
     //FXML

@@ -5,6 +5,7 @@ import Words.BLL.MovieManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javax.naming.directory.SearchResult;
 import java.util.List;
 
 public class MovieModel {
@@ -30,6 +31,12 @@ public class MovieModel {
 
     public ObservableList<Movie> getObservableMovies() {
         return moviesToBeViewed;
+    }
+
+    public void searchMovie(String query) throws Exception {
+        List<Movie> searchResults = movieManager.searchMovies(query);
+        moviesToBeViewed.clear();
+        moviesToBeViewed.addAll(SearchResult);
     }
 
 
