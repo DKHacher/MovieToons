@@ -19,6 +19,7 @@ public class MovieManager implements IMovieDataAccess {
         return movieDAO.getAllMovies();
     }
 
+
     @Override
     public Movie createMovie(Movie newMovie) throws Exception {
         return movieDAO.createMovie(newMovie);

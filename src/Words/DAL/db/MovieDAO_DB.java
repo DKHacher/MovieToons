@@ -2,9 +2,9 @@ package Words.DAL.db;
 
 import Words.BE.Movie;
 import Words.DAL.IMovieDataAccess;
+import Words.BE.Category;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class MovieDAO_DB implements IMovieDataAccess {
         {
             String sql =
                     """
-                    SELECT Movie.id, Movie.name, Movie.ratingIMDB, Movie.ratingPersonal, fileLink, lastView
+                    SELECT Movie.id, Movie.name, Movie.ratingIMDB, Movie.ratingPersonal, Movie.fileLink, Movie.lastView
                     FROM Movie
                     """;
 
@@ -38,12 +38,39 @@ public class MovieDAO_DB implements IMovieDataAccess {
                 int ratingIMDB = rs.getInt("ratingIMDB");
                 int ratingPersonal = rs.getInt("ratingPersonal");
                 String fileLink = rs.getString("fileLink");
-                LocalDateTime lastView = (LocalDateTime) rs.getObject("lastView");
+                Timestamp lastView = (Timestamp) rs.getObject("lastView");
 
-                Movie movie = new Movie(id, movieTitle, ratingIMDB, ratingPersonal, fileLink, lastView);
+                Movie movie = new Movie(id, movieTitle, ratingIMDB, ratingPersonal, fileLink, lastView, getAllCategoriesInMovie(id, conn));
                 allMovies.add(movie);
             }}
         return allMovies;
+    }
+
+    private ArrayList<Category> getAllCategoriesInMovie(int id, Connection conn) throws Exception {
+        ArrayList<Category> allCategories = new ArrayList<>();
+
+        try (
+             Statement stmt2 = conn.createStatement()) {
+            String sql2 = "SELECT * FROM dbo.CatMovie WHERE movieId = "+id;
+            ResultSet rs2 = stmt2.executeQuery(sql2);
+
+            while (rs2.next()) {
+                int Cid = rs2.getInt("categoryId");
+                String categoryToImport = "SELECT * FROM dbo.Category WHERE id = "+Cid+";";
+                Statement stmt3 = conn.createStatement();
+                ResultSet rs3 = stmt3.executeQuery(categoryToImport);
+                while (rs3.next()){
+                    int CatId = rs3.getInt("id");
+                    String CatName = rs3.getString("name");
+
+                    Category category = new Category(CatId, CatName);
+                    allCategories.add(category);
+                }
+            }
+            return allCategories;
+        } catch (SQLException e) {
+            throw new Exception("Error connecting to the database");
+        }
     }
 
     @Override
@@ -71,7 +98,8 @@ public class MovieDAO_DB implements IMovieDataAccess {
                 id = rs.getInt(1);
             }
 
-            Movie createdMovie = new Movie(id, movie.getMovieTitle(), movie.getIMDB(), movie.getPersonal(), movie.getFilePath(), movie.getLastView());
+            //Movie createdMovie = new Movie(id, movie.getMovieTitle(), movie.getIMDB(), movie.getPersonal(), movie.getFilePath(), movie.getLastView());
+            Movie createdMovie = new Movie(0, null, 0, 0, null, null, null);
 
             return createdMovie;
         } catch (SQLException ex) {

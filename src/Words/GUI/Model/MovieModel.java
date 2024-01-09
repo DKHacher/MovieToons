@@ -32,4 +32,5 @@ public class MovieModel {
         return moviesToBeViewed;
     }
 
+
 }
