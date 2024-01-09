@@ -10,16 +10,17 @@
 
 <AnchorPane prefHeight="421.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
    <children>
-      <TableView layoutX="197.0" layoutY="66.0" prefHeight="307.0" prefWidth="276.0">
+      <TableView layoutX="197.0" layoutY="66.0" prefHeight="307.0" prefWidth="282.0">
         <columns>
-          <TableColumn prefWidth="109.60011291503906" resizable="false" text="Name" />
-          <TableColumn fx:id="colRatingIMDB" prefWidth="85.5999755859375" resizable="false" text="Rating" />
-            <TableColumn fx:id="colGenre" prefWidth="81.60003662109375" text="Genres" />
+          <TableColumn prefWidth="100.80000305175781" resizable="false" text="Name" />
+            <TableColumn fx:id="colGenre" prefWidth="91.20001220703125" text="Genres" />
+          <TableColumn fx:id="colRatingIMDB" prefWidth="43.199951171875" resizable="false" text="Rating" />
+            <TableColumn fx:id="colRatingIMDB1" prefWidth="44.79996337890623" resizable="false" text="IMDB" />
         </columns>
       </TableView>
       <Button layoutX="197.0" layoutY="381.0" mnemonicParsing="false" text="New" />
       <Button layoutX="247.0" layoutY="381.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="422.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="428.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateCategory" text="New" />
       <Button layoutX="61.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleUpdateCategory" text="Edit" />
       <Button layoutX="121.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteCategory" text="Delete" />
@@ -45,5 +46,10 @@
             <TableColumn fx:id="colTitle" prefWidth="157.5999755859375" resizable="false" text="Name" />
          </columns>
       </TableView>
+      <Label layoutX="499.0" layoutY="50.0" text="All Movies">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
