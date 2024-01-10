@@ -40,7 +40,7 @@ public class MovieDAO_DB implements IMovieDataAccess {
                 String fileLink = rs.getString("fileLink");
                 Timestamp lastView = (Timestamp) rs.getObject("lastView");
 
-                Movie movie = new Movie(id, movieTitle, ratingIMDB, ratingPersonal, fileLink, lastView);
+                Movie movie = new Movie(id, movieTitle, ratingIMDB, ratingPersonal, fileLink, lastView, getAllCategoriesInMovie(id, conn));
                 allMovies.add(movie);
             }}
         return allMovies;
@@ -108,7 +108,7 @@ public class MovieDAO_DB implements IMovieDataAccess {
                     id = rs.getInt(1);
                 }
 
-                return new Movie(id, movie.getMovieTitle(), movie.getRatingIMDB(), movie.getRatingPersonal(), movie.getFilePath(), movie.getLastView());
+                return new Movie(id, movie.getMovieTitle(), movie.getRatingIMDB(), movie.getRatingPersonal(), movie.getFilePath(), movie.getLastView(), movie.getCategories());
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 throw new Exception("Could not insert movie.", ex);

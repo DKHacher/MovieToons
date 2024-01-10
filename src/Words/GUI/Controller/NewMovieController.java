@@ -72,7 +72,7 @@ public class NewMovieController implements Initializable {
                 //Update the file path with the new path in the data folder
                 String filePath = "Resources/Movies/" + copiedFile.getName();
 
-                Movie newMovie = new Movie(-1, movieTitle, ratingIMDB, ratingPersonal, filePath, null);
+                Movie newMovie = new Movie(-1, movieTitle, ratingIMDB, ratingPersonal, filePath, null, null);
                 movieModel.createNewMovie(newMovie);
 
                 //Close the window

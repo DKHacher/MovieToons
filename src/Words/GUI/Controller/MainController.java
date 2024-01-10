@@ -29,11 +29,11 @@ public class MainController implements Initializable {
     @FXML
     private TableView<Movie> catMoviesTbl;
     @FXML
-    private TableColumn <Movie, String> colTitleAll, colGenreAll, colTitle, colGenre;
+    private TableColumn <Movie, String> colTitleAll, colGenreAll;
     @FXML
-    private TableColumn <Movie, Integer> colRatingIMDBAll, colRatingPersonalAll, colRatingIMDB, colRatingPersonal;
+    private TableColumn <Movie, Integer> colRatingIMDBAll, colRatingPersonalAll;
     @FXML
-    private TableColumn <Movie, Timestamp> colLastView, colLastViewAll;
+    private TableColumn <Movie, Timestamp> colLastViewAll;
     @FXML
     private TableColumn <Category, String> colCatType;
     @FXML
@@ -60,14 +60,10 @@ public class MainController implements Initializable {
     }
 
     private void initializeTableColumns() {
-        //Movies
-        colTitle.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
-        colRatingIMDB.setCellValueFactory(new PropertyValueFactory<>("ratingIMDB"));
-        colRatingPersonal.setCellValueFactory(new PropertyValueFactory<>("ratingPersonal"));
-        colLastView.setCellValueFactory(new  PropertyValueFactory<>("lastView"));
 
         //All movies
         colTitleAll.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
+        colGenreAll.setCellValueFactory((new PropertyValueFactory<>("CategoriesAsString")));
         colRatingIMDBAll.setCellValueFactory(new PropertyValueFactory<>("ratingIMDB"));
         colRatingPersonalAll.setCellValueFactory(new PropertyValueFactory<>("ratingPersonal"));
         colLastViewAll.setCellValueFactory(new PropertyValueFactory<>("lastView"));
@@ -99,11 +95,13 @@ public class MainController implements Initializable {
     @FXML
     private void handleCreateMovie() {
         openMovieNew();
+        allMoviesTbl.refresh();
     }
 
     @FXML
     private void handleEditAllMovies() {
         openMovieEdit(allMoviesTbl);
+        allMoviesTbl.refresh();
     }
 
     @FXML
@@ -114,21 +112,25 @@ public class MainController implements Initializable {
     @FXML
     private void handleDeleteMovie() {
         deleteMovie();
+        allMoviesTbl.refresh();
     }
 
     @FXML
     private void handleCreateCategory() {
         openCategoryNew();
+        categoriesTbl.refresh();
     }
 
     @FXML
     private void handleUpdateCategory() {
         openCategoryEdit();
+        categoriesTbl.refresh();
     }
 
     @FXML
     private void handleDeleteCategory() {
         deleteCategory();
+        categoriesTbl.refresh();
     }
 
 

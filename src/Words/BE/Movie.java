@@ -5,6 +5,7 @@ import javafx.scene.media.MediaException;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class Movie {
 
@@ -12,16 +13,18 @@ public class Movie {
     private Timestamp lastView;
     private int id, ratingIMDB, ratingPersonal;
     private Media media;
-    //private ArrayList<Words.BE.Category> categories;
+    private ArrayList<Category> Categories;
 
-    public Movie(int id, String movieTitle, int ratingIMDB, int ratingPersonal, String fileLink, Timestamp lastView) {
+    private String CategoriesAsString = "";
+
+    public Movie(int id, String movieTitle, int ratingIMDB, int ratingPersonal, String fileLink, Timestamp lastView, ArrayList<Category> categories) {
         this.id = id;
         this.fileLink = fileLink;
         this.movieTitle = movieTitle;
         this.ratingIMDB = ratingIMDB;
         this.ratingPersonal = ratingPersonal;
         this.lastView = lastView;
-        //this.Categories = categories;
+        this.Categories = categories;
 
         try {
             this.media = new Media(new File(fileLink).toURI().toString());
@@ -32,6 +35,20 @@ public class Movie {
     }
 
 
+
+    public String getCategoriesAsString() {
+        setCategoriesAsString();
+        return CategoriesAsString;
+    }
+
+    public void setCategoriesAsString() {
+        for (Category cat:Categories) {
+            CategoriesAsString += cat.getCatType() + ", ";
+        }
+        if (CategoriesAsString != null && CategoriesAsString.length() >=3){
+            CategoriesAsString.substring(0, CategoriesAsString.length()-2);
+        }
+    }
 
     public String getMovieTitle() {
         return movieTitle;
@@ -76,4 +93,12 @@ public class Movie {
         return id;
     }
 
+    public ArrayList<Category> getCategories() {
+        return Categories;
+    }
+
+    public void setCategories(ArrayList<Category> categories) {
+        Categories = categories;
+
+    }
 }

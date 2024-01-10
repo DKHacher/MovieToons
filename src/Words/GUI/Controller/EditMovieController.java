@@ -80,6 +80,7 @@ public class EditMovieController implements Initializable {
             intNewPersonalRating.setText(String.valueOf(selectedMovie.getRatingPersonal()));
             intNewIMDBRating.setText(String.valueOf(selectedMovie.getRatingIMDB()));
             txtNewFilePath.setText(selectedMovie.getFilePath());
+            selectedNewGenres.addAll(selectedMovie.getCategories());
         }
     }
 
