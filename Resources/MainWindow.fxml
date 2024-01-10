@@ -8,29 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="420.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
+<AnchorPane prefHeight="420.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
    <children>
-      <TableView fx:id="catMoviesTbl" layoutX="569.0" layoutY="68.0" prefHeight="307.0" prefWidth="366.0">
-        <columns>
-          <TableColumn fx:id="colTitle" prefWidth="100.80000305175781" resizable="false" text="Name" />
-            <TableColumn fx:id="colGenre" prefWidth="91.20001220703125" text="Genres" />
-          <TableColumn fx:id="colRatingPersonal" prefWidth="46.4000244140625" resizable="false" text="Rating" />
-            <TableColumn fx:id="colRatingIMDB" prefWidth="41.5999755859375" resizable="false" text="IMDB" />
-            <TableColumn fx:id="colLastView" prefWidth="83.20001831054685" resizable="false" text="Last Viewed" />
-        </columns>
-      </TableView>
       <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateMovie" text="New" />
-      <Button layoutX="569.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleEditMovie" text="Edit" />
       <Button layoutX="329.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteMovie" text="Delete" />
       <Button layoutX="395.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateCategory" text="New" />
       <Button layoutX="442.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleUpdateCategory" text="Edit" />
       <Button layoutX="502.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteCategory" text="Delete" />
       <Label layoutX="395.0" layoutY="50.0" text="Category">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="567.0" layoutY="50.0" text="Movies">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -56,6 +41,5 @@
          </font>
       </Label>
       <Button layoutX="63.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleEditAllMovies" text="Edit" />
-      <Button layoutX="885.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
    </children>
 </AnchorPane>
