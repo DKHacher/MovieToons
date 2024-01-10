@@ -152,13 +152,16 @@ public class MovieDAO_DB implements IMovieDataAccess {
     @Override
     public void updateMovie(Movie movie) throws Exception {
         // SQL command
-        String sql = "UPDATE Movies SET MovieTitle = ? WHERE id = ?;";
+        String sql = "UPDATE Movie SET name = ?, ratingIMDB = ?, ratingPersonal = ?, filepath = ? WHERE id = ?;";
 
         try (Connection conn = databaseConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Bind parameters
             stmt.setString(1, movie.getMovieTitle());
-            stmt.setInt(2, movie.getId());
+            stmt.setInt(2, movie.getRatingIMDB());
+            stmt.setInt(3, movie.getRatingPersonal());
+            stmt.setString(4, movie.getFilePath());
+            stmt.setInt(5, movie.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -170,7 +173,7 @@ public class MovieDAO_DB implements IMovieDataAccess {
     @Override
     public void deleteMovie(Movie movie) throws Exception {
         // SQL command to delete a movie by its ID
-        String sql = "DELETE FROM Movies WHERE id = ?;";
+        String sql = "DELETE FROM Movie WHERE id = ?;";
 
         try (Connection conn = databaseConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

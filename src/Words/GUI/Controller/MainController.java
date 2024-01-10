@@ -112,6 +112,11 @@ public class MainController implements Initializable {
     }
 
     @FXML
+    private void handleDeleteMovie() {
+        deleteMovie();
+    }
+
+    @FXML
     private void handleCreateCategory() {
         openCategoryNew();
     }
@@ -139,6 +144,24 @@ public class MainController implements Initializable {
             if (selectedCategory != null) {
                 try {
                     categoryModel.deleteCategory(selectedCategory);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void deleteMovie() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Are you sure you wish to delete this movie?");
+
+        //Buttons
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Movie selectedMovie = allMoviesTbl.getSelectionModel().getSelectedItem();
+            if (selectedMovie != null) {
+                try {
+                    movieModel.deleteMovie(selectedMovie);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

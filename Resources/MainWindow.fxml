@@ -21,7 +21,7 @@
       </TableView>
       <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateMovie" text="New" />
       <Button layoutX="569.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleEditMovie" text="Edit" />
-      <Button layoutX="329.0" layoutY="381.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="329.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteMovie" text="Delete" />
       <Button layoutX="395.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateCategory" text="New" />
       <Button layoutX="442.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleUpdateCategory" text="Edit" />
       <Button layoutX="502.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteCategory" text="Delete" />
