@@ -27,8 +27,6 @@ public class MainController implements Initializable {
     @FXML
     private TableView<Category> categoriesTbl;
     @FXML
-    private TableView<Movie> catMoviesTbl;
-    @FXML
     private TableColumn <Movie, String> colTitleAll, colGenreAll;
     @FXML
     private TableColumn <Movie, Integer> colRatingIMDBAll, colRatingPersonalAll;
@@ -42,6 +40,7 @@ public class MainController implements Initializable {
     private MovieModel movieModel;
     private CategoryModel categoryModel;
     private boolean isCategorySelected = false;
+    private boolean isMovieSelected = false;
 
     public MainController() {
         try {
@@ -101,7 +100,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void handleEditAllMovies() {
-        openMovieEdit(allMoviesTbl);
+        openMovieEdit();
         allMoviesTbl.refresh();
     }
 
@@ -132,6 +131,11 @@ public class MainController implements Initializable {
         toggleCategorySelection();
     }
 
+    @FXML
+    private void handleMovieClick(javafx.scene.input.MouseEvent mouseEvent) {
+        toggleMovieSelection();
+    }
+
     //Methods
 
     private void toggleCategorySelection() {
@@ -146,6 +150,20 @@ public class MainController implements Initializable {
             isCategorySelected = !isCategorySelected;
         }
         categoriesTbl.refresh();
+    }
+
+    private void toggleMovieSelection() {
+        Movie selectedMovie = allMoviesTbl.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            if (isMovieSelected) {
+                allMoviesTbl.getSelectionModel().clearSelection();
+            } else{
+                allMoviesTbl.getSelectionModel().select(selectedMovie);
+            }
+
+            isMovieSelected = !isMovieSelected;
+        }
+        allMoviesTbl.refresh();
     }
 
 
@@ -256,32 +274,31 @@ public class MainController implements Initializable {
         }
     }
 
-    private void openMovieEdit(TableView<Movie> tableView) {
-        Movie selectedMovie = tableView.getSelectionModel().getSelectedItem();
+    private void openMovieEdit() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditMovie.fxml"));
+            Parent root = loader.load();
 
-        if (selectedMovie != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditMovie.fxml"));
-                Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Edit Movie");
 
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setTitle("Edit Movie");
+            EditMovieController editMovieController = loader.getController();
 
-                EditMovieController editMovieController = loader.getController();
-                editMovieController.setSelectedMovie(selectedMovie);
+            Movie selectedMovie = allMoviesTbl.getSelectionModel().getSelectedItem();
+            editMovieController.setSelectedMovie(selectedMovie);
 
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
+            editMovieController.setManager(movieModel);
 
-                stage.setResizable(false);
-                stage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            noMovieAlert();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.setResizable(false);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 
     private void noMovieAlert() {

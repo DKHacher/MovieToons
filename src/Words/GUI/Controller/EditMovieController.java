@@ -41,6 +41,10 @@ public class EditMovieController implements Initializable {
         }
     }
 
+    public void setManager(MovieModel movieModel) {
+        this.movieModel = movieModel;
+    }
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadGenres();
 
@@ -109,5 +113,6 @@ public class EditMovieController implements Initializable {
             selectedNewGenres.remove(selectedGenre);
         }
     }
+
 
 }

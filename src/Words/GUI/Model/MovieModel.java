@@ -33,7 +33,16 @@ public class MovieModel {
         movie.setRatingIMDB(newRatingIMDB);
         movie.setRatingPersonal(newRatingPersonal);
         movie.setFilePath(newFilePath);
+
+        try {
+            // Update the movie in the database
+            movieManager.updateMovie(movie);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the exception appropriately (logging, showing an error message, etc.)
+        }
     }
+
 
     public void loadMovies() {
         try {

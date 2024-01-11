@@ -21,12 +21,12 @@
          </font>
       </Label>
       <TextField fx:id="txtMovieSearch" layoutX="14.0" layoutY="14.0" promptText="Search" />
-      <TableView fx:id="categoriesTbl" layoutX="395.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0" onMouseClicked="#handleCategoryClick">
+      <TableView fx:id="categoriesTbl" layoutX="395.0" layoutY="68.0" onMouseClicked="#handleCategoryClick" prefHeight="307.0" prefWidth="158.0">
          <columns>
             <TableColumn fx:id="colCatType" prefWidth="157.59999408721924" resizable="false" text="Name" />
          </columns>
       </TableView>
-      <TableView fx:id="allMoviesTbl" layoutX="14.0" layoutY="68.0" prefHeight="307.0" prefWidth="365.0">
+      <TableView fx:id="allMoviesTbl" layoutX="14.0" layoutY="68.0" onMouseClicked="#handleMovieClick" prefHeight="307.0" prefWidth="365.0">
          <columns>
             <TableColumn fx:id="colTitleAll" prefWidth="89.59994506835938" resizable="false" text="Name" />
             <TableColumn fx:id="colGenreAll" prefWidth="98.39990234375" resizable="false" text="Genres" />
