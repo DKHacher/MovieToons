@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EditMovieController implements Initializable {
@@ -64,10 +65,11 @@ public class EditMovieController implements Initializable {
         int newRatingIMDB = Integer.parseInt(intNewIMDBRating.getText());
         int newRatingPersonal = Integer.parseInt(intNewPersonalRating.getText());
         String newFilePath = txtNewFilePath.getText();
+        ArrayList<Category> categoryList = new ArrayList<>(selectedNewGenres);
 
         if (movieModel != null && selectedMovie != null) {
             try {
-                movieModel.updateMovie(selectedMovie, newMovieTitle, newRatingIMDB, newRatingPersonal, newFilePath);
+                movieModel.updateMovie(selectedMovie, newMovieTitle, newRatingIMDB, newRatingPersonal, newFilePath, categoryList);
 
                 Stage stage = (Stage) ((javafx.scene.control.Button) actionEvent.getSource()).getScene().getWindow();
                 stage.close();

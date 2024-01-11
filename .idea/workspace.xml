@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="259a819c-313c-45df-81cc-680ef624e546" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/BE/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/BE/Movie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Words/DAL/db/MovieDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/DAL/db/MovieDAO_DB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Words/GUI/Controller/EditMovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Controller/EditMovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/GUI/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Words/GUI/Controller/NewMovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Controller/NewMovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Words/GUI/Model/MovieModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Model/MovieModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,6 +179,7 @@
       <workItem from="1704742577212" duration="500000" />
       <workItem from="1704743126017" duration="1470000" />
       <workItem from="1704791127697" duration="3295000" />
+      <workItem from="1704996520218" duration="2442000" />
     </task>
     <servers />
   </component>
@@ -189,14 +189,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Words/BE/Movie.java</url>
-          <line>43</line>
-          <properties class="Words.BE.Movie" method="setCategoriesAsString">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Words/DAL/db/MovieDAO_DB.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

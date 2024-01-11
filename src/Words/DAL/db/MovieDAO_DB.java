@@ -107,8 +107,9 @@ public class MovieDAO_DB implements IMovieDataAccess {
                 if (rs.next()) {
                     id = rs.getInt(1);
                 }
-
-                return new Movie(id, movie.getMovieTitle(), movie.getRatingIMDB(), movie.getRatingPersonal(), movie.getFilePath(), movie.getLastView(), movie.getCategories());
+                Movie resultMovie = new Movie(newMovieId, movie.getMovieTitle(), movie.getRatingIMDB(), movie.getRatingPersonal(), movie.getFilePath(), movie.getLastView(), movie.getCategories());
+                updateMovieCategories(resultMovie);
+                return resultMovie;
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 throw new Exception("Could not insert movie.", ex);
@@ -162,7 +163,7 @@ public class MovieDAO_DB implements IMovieDataAccess {
             stmt.setInt(3, movie.getRatingPersonal());
             stmt.setString(4, movie.getFilePath());
             stmt.setInt(5, movie.getId());
-
+            updateMovieCategories(movie);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -186,6 +187,33 @@ public class MovieDAO_DB implements IMovieDataAccess {
             ex.printStackTrace();
             throw new Exception("Could not delete movie.", ex);
         }
+    }
+    private void updateMovieCategories(Movie movie) throws Exception {
+        // SQL command
+        String sqlDeletePrevious = "DELETE FROM dbo.CatMovie WHERE MovieId = ?;";
+        String sqlCreateNew = "INSERT INTO dbo.CatMovie VALUES ";
+        for (Category category:movie.getCategories()) {
+            String toAdd ="\n" + "(" + movie.getId() + ", " + category.getId() + "),";
+            sqlCreateNew += toAdd;
+        }
+        sqlCreateNew = sqlCreateNew.substring(0,sqlCreateNew.length() - 1);
+        sqlCreateNew += ";";
+        try (
+                Connection conn = databaseConnector.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sqlDeletePrevious);
+                PreparedStatement stmt2 = conn.prepareStatement(sqlCreateNew)
+        ) {
+            // Bind parameters
+            stmt.setInt(1, movie.getId());
+
+            // Run the specified SQL statement
+            stmt.executeUpdate();
+            stmt2.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new Exception("Could not update categories associated with movie", e);
+        }
+
     }
 
 }

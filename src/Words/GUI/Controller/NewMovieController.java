@@ -17,6 +17,7 @@ import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -56,7 +57,7 @@ public class NewMovieController implements Initializable {
             String originalFilePath = txtFilePath.getText();
             int ratingIMDB = Integer.parseInt(txtRatingIMDB.getText());
             int ratingPersonal = Integer.parseInt(txtRatingPersonal.getText());
-            //ArrayList<Category> selectedGenresList = new ArrayList<>(selectedGenres);
+            ArrayList<Category> selectedGenresList = new ArrayList<>(selectedGenres);
 
             if (isValidMediaFile(originalFilePath)) {
                 //Copy the file to the data folder
@@ -72,7 +73,7 @@ public class NewMovieController implements Initializable {
                 //Update the file path with the new path in the data folder
                 String filePath = "Resources/Movies/" + copiedFile.getName();
 
-                Movie newMovie = new Movie(-1, movieTitle, ratingIMDB, ratingPersonal, filePath, null, null);
+                Movie newMovie = new Movie(-1, movieTitle, ratingIMDB, ratingPersonal, filePath, null, selectedGenresList);
                 movieModel.createNewMovie(newMovie);
 
                 //Close the window
