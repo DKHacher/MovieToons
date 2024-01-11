@@ -41,6 +41,7 @@ public class MainController implements Initializable {
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;
+    private boolean isCategorySelected = false;
 
     public MainController() {
         try {
@@ -105,11 +106,6 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void handleEditMovie() {
-        openMovieEdit(catMoviesTbl);
-    }
-
-    @FXML
     private void handleDeleteMovie() {
         deleteMovie();
         allMoviesTbl.refresh();
@@ -118,23 +114,41 @@ public class MainController implements Initializable {
     @FXML
     private void handleCreateCategory() {
         openCategoryNew();
-        categoriesTbl.refresh();
     }
 
     @FXML
     private void handleUpdateCategory() {
         openCategoryEdit();
-        categoriesTbl.refresh();
     }
 
     @FXML
     private void handleDeleteCategory() {
         deleteCategory();
+    }
+
+
+    @FXML
+    private void handleCategoryClick(javafx.scene.input.MouseEvent mouseEvent) {
+        toggleCategorySelection();
+    }
+
+    //Methods
+
+    private void toggleCategorySelection() {
+        Category selectedCategory = categoriesTbl.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            if (isCategorySelected) {
+                categoriesTbl.getSelectionModel().clearSelection();
+            } else {
+                categoriesTbl.getSelectionModel().select(selectedCategory);
+            }
+
+            isCategorySelected = !isCategorySelected;
+        }
         categoriesTbl.refresh();
     }
 
 
-    //Methods
     private void deleteCategory() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Are you sure you wish to delete this category?");
@@ -278,4 +292,15 @@ public class MainController implements Initializable {
 
         alert.showAndWait();
     }
+
+    private void noCategoryAlert() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("No Category Selected");
+        alert.setHeaderText("No category selected!");
+        alert.setContentText("Please select a category.");
+
+        alert.showAndWait();
+    }
+
+
 }

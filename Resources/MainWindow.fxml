@@ -21,7 +21,7 @@
          </font>
       </Label>
       <TextField fx:id="txtMovieSearch" layoutX="14.0" layoutY="14.0" promptText="Search" />
-      <TableView fx:id="categoriesTbl" layoutX="395.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0">
+      <TableView fx:id="categoriesTbl" layoutX="395.0" layoutY="68.0" prefHeight="307.0" prefWidth="158.0" onMouseClicked="#handleCategoryClick">
          <columns>
             <TableColumn fx:id="colCatType" prefWidth="157.59999408721924" resizable="false" text="Name" />
          </columns>
