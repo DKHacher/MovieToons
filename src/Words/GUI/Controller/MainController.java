@@ -57,6 +57,7 @@ public class MainController implements Initializable {
         initializeModels();
         initializeTableColumns();
         initializeSearchListener();
+        initializeDoubleClickCheck();
     }
 
     private void initializeTableColumns() {
@@ -90,6 +91,9 @@ public class MainController implements Initializable {
         });
     }
 
+    private void initializeDoubleClickCheck() {
+        allMoviesTbl.setOnMouseClicked(this::handleMovieDoubleClick);
+    }
 
     //FXML
     @FXML
@@ -134,6 +138,13 @@ public class MainController implements Initializable {
     @FXML
     private void handleMovieClick(javafx.scene.input.MouseEvent mouseEvent) {
         toggleMovieSelection();
+    }
+
+    @FXML
+    private void handleMovieDoubleClick(javafx.scene.input.MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() == 2) {
+            openMovieWindow();
+        }
     }
 
     //Methods
@@ -300,6 +311,34 @@ public class MainController implements Initializable {
         }
 
     }
+
+    private void openMovieWindow() {
+        Movie selectedMovie = allMoviesTbl.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/MovieWindow.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Movie Details");
+
+                MovieWindowController movieWindowController = loader.getController();
+                movieWindowController.setMovieDetails(selectedMovie.getMovieTitle(), selectedMovie.getCategoriesAsString());
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+
+                stage.setResizable(false);
+                stage.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    //Alerts
 
     private void noMovieAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
