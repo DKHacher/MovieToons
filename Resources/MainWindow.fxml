@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="420.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
+<AnchorPane onMouseClicked="#HandleBackgroundClick" prefHeight="420.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
    <children>
       <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateMovie" text="New" />
       <Button layoutX="329.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteMovie" text="Delete" />
@@ -26,7 +26,7 @@
             <TableColumn fx:id="colCatType" prefWidth="157.59999408721924" resizable="false" text="Name" />
          </columns>
       </TableView>
-      <TableView fx:id="allMoviesTbl" layoutX="14.0" layoutY="68.0" onMouseClicked="#handleMovieClick" prefHeight="307.0" prefWidth="365.0">
+      <TableView fx:id="allMoviesTbl" layoutX="14.0" layoutY="68.0" prefHeight="307.0" prefWidth="365.0">
          <columns>
             <TableColumn fx:id="colTitleAll" prefWidth="89.59994506835938" resizable="false" text="Name" />
             <TableColumn fx:id="colGenreAll" prefWidth="98.39990234375" resizable="false" text="Genres" />

@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="259a819c-313c-45df-81cc-680ef624e546" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Words/BE/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/BE/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Words/GUI/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Controller/MainController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +178,7 @@
       <workItem from="1704743126017" duration="1470000" />
       <workItem from="1704791127697" duration="3295000" />
       <workItem from="1704996520218" duration="2442000" />
-      <workItem from="1705311256247" duration="399000" />
+      <workItem from="1705311256247" duration="1901000" />
     </task>
     <servers />
   </component>
@@ -195,11 +197,6 @@
           <url>file://$PROJECT_DIR$/src/Words/GUI/Controller/MovieWindowController.java</url>
           <line>16</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Words/BE/Movie.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

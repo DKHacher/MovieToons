@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -136,13 +137,11 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void handleMovieClick(javafx.scene.input.MouseEvent mouseEvent) {
-        toggleMovieSelection();
-    }
-
-    @FXML
     private void handleMovieDoubleClick(javafx.scene.input.MouseEvent mouseEvent) {
-        if (mouseEvent.getClickCount() == 2) {
+        if (mouseEvent.getClickCount() == 1) {
+            toggleMovieSelection();
+        }
+        else if (mouseEvent.getClickCount() == 2) {
             openMovieWindow();
         }
     }
@@ -152,13 +151,7 @@ public class MainController implements Initializable {
     private void toggleCategorySelection() {
         Category selectedCategory = categoriesTbl.getSelectionModel().getSelectedItem();
         if (selectedCategory != null) {
-            if (isCategorySelected) {
-                categoriesTbl.getSelectionModel().clearSelection();
-            } else {
-                categoriesTbl.getSelectionModel().select(selectedCategory);
-            }
-
-            isCategorySelected = !isCategorySelected;
+            categoriesTbl.getSelectionModel().select(selectedCategory);
         }
         categoriesTbl.refresh();
     }
@@ -166,13 +159,7 @@ public class MainController implements Initializable {
     private void toggleMovieSelection() {
         Movie selectedMovie = allMoviesTbl.getSelectionModel().getSelectedItem();
         if (selectedMovie != null) {
-            if (isMovieSelected) {
-                allMoviesTbl.getSelectionModel().clearSelection();
-            } else{
-                allMoviesTbl.getSelectionModel().select(selectedMovie);
-            }
-
-            isMovieSelected = !isMovieSelected;
+            allMoviesTbl.getSelectionModel().select(selectedMovie);
         }
         allMoviesTbl.refresh();
     }
@@ -358,5 +345,9 @@ public class MainController implements Initializable {
         alert.showAndWait();
     }
 
-
+    @FXML
+    private void HandleBackgroundClick(MouseEvent mouseEvent) {
+        allMoviesTbl.getSelectionModel().clearSelection();
+        categoriesTbl.getSelectionModel().clearSelection();
+    }
 }
