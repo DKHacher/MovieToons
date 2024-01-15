@@ -311,13 +311,15 @@ public class MainController implements Initializable {
                 stage.setTitle("Movie Details");
 
                 MovieWindowController movieWindowController = loader.getController();
-                movieWindowController.setMovieDetails(selectedMovie.getMovieTitle(), selectedMovie.getCategoriesAsString());
+                movieWindowController.setMovieDetails(selectedMovie.getMovieTitle(), selectedMovie.getCategoriesAsString(), selectedMovie);
 
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
 
                 stage.setResizable(false);
                 stage.showAndWait();
+                movieModel.updateMovie(selectedMovie);
+                allMoviesTbl.refresh();
             } catch (Exception e) {
                 e.printStackTrace();
             }

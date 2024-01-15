@@ -69,7 +69,12 @@ public class EditMovieController implements Initializable {
 
         if (movieModel != null && selectedMovie != null) {
             try {
-                movieModel.updateMovie(selectedMovie, newMovieTitle, newRatingIMDB, newRatingPersonal, newFilePath, categoryList);
+                selectedMovie.setMovieTitle(newMovieTitle);
+                selectedMovie.setRatingIMDB(newRatingIMDB);
+                selectedMovie.setRatingPersonal(newRatingPersonal);
+                selectedMovie.setFilePath(newFilePath);
+                selectedMovie.setCategories(categoryList);
+                movieModel.updateMovie(selectedMovie);
 
                 Stage stage = (Stage) ((javafx.scene.control.Button) actionEvent.getSource()).getScene().getWindow();
                 stage.close();

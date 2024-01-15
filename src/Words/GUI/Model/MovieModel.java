@@ -1,12 +1,10 @@
 package Words.GUI.Model;
 
-import Words.BE.Category;
 import Words.BE.Movie;
 import Words.BLL.MovieManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovieModel {
@@ -30,12 +28,7 @@ public class MovieModel {
         moviesToBeViewed.remove(selectedMovie);
     }
 
-    public void updateMovie(Movie movie, String newMovieTitle, int newRatingIMDB, int newRatingPersonal, String newFilePath, ArrayList<Category> categoryList) {
-        movie.setMovieTitle(newMovieTitle);
-        movie.setRatingIMDB(newRatingIMDB);
-        movie.setRatingPersonal(newRatingPersonal);
-        movie.setFilePath(newFilePath);
-        movie.setCategories(categoryList);
+    public void updateMovie(Movie movie) {
         try {
             // Update the movie in the database
             movieManager.updateMovie(movie);
