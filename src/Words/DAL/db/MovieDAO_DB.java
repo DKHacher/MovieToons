@@ -108,7 +108,9 @@ public class MovieDAO_DB implements IMovieDataAccess {
                     id = rs.getInt(1);
                 }
                 Movie resultMovie = new Movie(newMovieId, movie.getMovieTitle(), movie.getRatingIMDB(), movie.getRatingPersonal(), movie.getFilePath(), movie.getLastView(), movie.getCategories());
-                updateMovieCategories(resultMovie);
+                if (!resultMovie.getCategories().isEmpty()){
+                    updateMovieCategories(resultMovie);
+                }
                 return resultMovie;
             } catch (SQLException ex) {
                 ex.printStackTrace();
