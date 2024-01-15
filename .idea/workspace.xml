@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="259a819c-313c-45df-81cc-680ef624e546" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/DAL/db/MovieDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/DAL/db/MovieDAO_DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/GUI/Controller/EditMovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Controller/EditMovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/GUI/Controller/NewMovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Controller/NewMovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/GUI/Model/MovieModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Model/MovieModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Words/BE/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/BE/Movie.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +120,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Frederik",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/frede/Desktop/Test/MovieToons",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -180,6 +176,7 @@
       <workItem from="1704743126017" duration="1470000" />
       <workItem from="1704791127697" duration="3295000" />
       <workItem from="1704996520218" duration="2442000" />
+      <workItem from="1705311256247" duration="399000" />
     </task>
     <servers />
   </component>
@@ -193,6 +190,16 @@
           <url>file://$PROJECT_DIR$/src/Words/DAL/db/MovieDAO_DB.java</url>
           <line>77</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Words/GUI/Controller/MovieWindowController.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Words/BE/Movie.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

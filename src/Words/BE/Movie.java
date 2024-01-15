@@ -42,11 +42,12 @@ public class Movie {
     }
 
     public void setCategoriesAsString() {
+        CategoriesAsString = "";
         for (Category cat:Categories) {
             CategoriesAsString += cat.getCatType() + ", ";
         }
         if (CategoriesAsString != null && CategoriesAsString.length() >=3){
-            CategoriesAsString.substring(0, CategoriesAsString.length()-2);
+            CategoriesAsString = CategoriesAsString.substring(0, CategoriesAsString.length()-2);
         }
     }
 
