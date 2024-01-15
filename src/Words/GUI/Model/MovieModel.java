@@ -1,5 +1,6 @@
 package Words.GUI.Model;
 
+import Words.BE.Category;
 import Words.BE.Movie;
 import Words.BLL.MovieManager;
 import javafx.collections.FXCollections;
@@ -57,6 +58,10 @@ public class MovieModel {
         List<Movie> searchResults = movieManager.searchMovies(query);
         moviesToBeViewed.clear();
         moviesToBeViewed.addAll(searchResults);
+    }
+
+    public List<Movie> getMoviesByCategory(Category category) throws Exception {
+        return movieManager.getMoviesByCategory(category);
     }
 
 

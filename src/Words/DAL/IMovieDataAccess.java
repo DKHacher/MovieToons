@@ -1,5 +1,6 @@
 package Words.DAL;
 
+import Words.BE.Category;
 import Words.BE.Movie;
 
 import java.util.List;
@@ -14,5 +15,6 @@ public interface IMovieDataAccess {
 
     public void deleteMovie(Movie movie) throws Exception;
 
+    public List<Movie> getMoviesByCategory(Category category) throws Exception;
 
 }

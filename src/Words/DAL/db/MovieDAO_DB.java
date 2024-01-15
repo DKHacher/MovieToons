@@ -219,4 +219,36 @@ public class MovieDAO_DB implements IMovieDataAccess {
 
     }
 
+
+    @Override
+    public List<Movie> getMoviesByCategory(Category category) throws Exception {
+        ArrayList<Movie> moviesByCategory = new ArrayList<>();
+
+        try (Connection conn = databaseConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "SELECT Movie.id, Movie.name, Movie.ratingIMDB, Movie.ratingPersonal, Movie.fileLink, Movie.lastView " +
+                             "FROM Movie " +
+                             "JOIN CatMovie ON Movie.id = CatMovie.movieId " +
+                             "WHERE CatMovie.categoryId = ?")) {
+
+            stmt.setInt(1, category.getId());
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String movieTitle = rs.getString("name");
+                int ratingIMDB = rs.getInt("ratingIMDB");
+                int ratingPersonal = rs.getInt("ratingPersonal");
+                String fileLink = rs.getString("fileLink");
+                Timestamp lastView = (Timestamp) rs.getObject("lastView");
+
+                Movie movie = new Movie(id, movieTitle, ratingIMDB, ratingPersonal, fileLink, lastView, getAllCategoriesInMovie(id, conn));
+                moviesByCategory.add(movie);
+            }
+        }
+
+        return moviesByCategory;
+    }
+
 }

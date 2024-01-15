@@ -4,6 +4,7 @@ import Words.BE.Category;
 import Words.BE.Movie;
 import Words.GUI.Model.CategoryModel;
 import Words.GUI.Model.MovieModel;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -75,11 +77,17 @@ public class MainController implements Initializable {
     }
 
     private void initializeModels() {
-        movieModel.loadMovies();
-        allMoviesTbl.setItems(movieModel.getObservableMovies());
+        try {
+            movieModel.loadMovies();
+            allMoviesTbl.setItems(movieModel.getObservableMovies());
 
-        categoryModel.loadCategories();
-        categoriesTbl.setItems(categoryModel.getObservableCategories());
+            categoryModel.loadCategories();
+            categoriesTbl.setItems(categoryModel.getObservableCategories());
+
+            loadMoviesBySelectedCategory();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initializeSearchListener() {
@@ -134,6 +142,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleCategoryClick(javafx.scene.input.MouseEvent mouseEvent) {
         toggleCategorySelection();
+        loadMoviesBySelectedCategory();
     }
 
     @FXML
@@ -146,6 +155,7 @@ public class MainController implements Initializable {
         }
     }
 
+
     //Methods
 
     private void toggleCategorySelection() {
@@ -154,6 +164,18 @@ public class MainController implements Initializable {
             categoriesTbl.getSelectionModel().select(selectedCategory);
         }
         categoriesTbl.refresh();
+    }
+
+    private void loadMoviesBySelectedCategory() {
+        Category selectedCategory = categoriesTbl.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            try {
+                List<Movie> moviesByCategory = movieModel.getMoviesByCategory(selectedCategory);
+                allMoviesTbl.setItems(FXCollections.observableArrayList(moviesByCategory));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void toggleMovieSelection() {

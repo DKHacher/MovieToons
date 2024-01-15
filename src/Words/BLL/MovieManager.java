@@ -1,5 +1,6 @@
 package Words.BLL;
 
+import Words.BE.Category;
 import Words.BE.Movie;
 import Words.DAL.IMovieDataAccess;
 import Words.DAL.db.MovieDAO_DB;
@@ -34,6 +35,11 @@ public class MovieManager implements IMovieDataAccess {
     @Override
     public void deleteMovie(Movie selectedMovie) throws Exception {
         movieDAO.deleteMovie(selectedMovie);
+    }
+
+    @Override
+    public List<Movie> getMoviesByCategory(Category category) throws Exception {
+        return movieDAO.getMoviesByCategory(category);
     }
 
     public List<Movie> searchMovies(String query) throws Exception {
