@@ -192,7 +192,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
     private void loadMoviesBySelectedCategory() {
         Category selectedCategory = categoriesTbl.getSelectionModel().getSelectedItem();
         if (selectedCategory != null) {
