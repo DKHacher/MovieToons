@@ -65,4 +65,15 @@ public class MovieModel {
     }
 
 
+    public void resetMovies() {
+        try {
+            moviesToBeViewed.clear();
+            List<Movie> allMovies = movieManager.getAllMovies();
+            moviesToBeViewed.addAll(allMovies);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

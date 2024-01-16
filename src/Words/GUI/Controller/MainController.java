@@ -113,8 +113,13 @@ public class MainController implements Initializable {
 
     @FXML
     private void handleEditAllMovies() {
-        openMovieEdit();
-        allMoviesTbl.refresh();
+        Movie selectedMovie = allMoviesTbl.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            openMovieEdit();
+            allMoviesTbl.refresh();
+        } else {
+            noMovieAlert();
+        }
     }
 
     @FXML
@@ -130,7 +135,12 @@ public class MainController implements Initializable {
 
     @FXML
     private void handleUpdateCategory() {
-        openCategoryEdit();
+        Category selectedCategory = categoriesTbl.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            openCategoryEdit();
+        } else {
+            noCategoryAlert();
+        }
     }
 
     @FXML
@@ -155,9 +165,17 @@ public class MainController implements Initializable {
         }
     }
 
+    @FXML
+    private void handleResetSearch() {
+        txtMovieSearch.clear();
+        categoriesTbl.getSelectionModel().clearSelection();
+        loadAllMovies(); // Load all movies instead of filtering by category
+    }
+
+
+
 
     //Methods
-
     private void toggleCategorySelection() {
         Category selectedCategory = categoriesTbl.getSelectionModel().getSelectedItem();
         if (selectedCategory != null) {
@@ -166,6 +184,15 @@ public class MainController implements Initializable {
         categoriesTbl.refresh();
     }
 
+    private void loadAllMovies() {
+        try {
+            movieModel.loadMovies(); // Load all movies
+            allMoviesTbl.setItems(movieModel.getObservableMovies());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void loadMoviesBySelectedCategory() {
         Category selectedCategory = categoriesTbl.getSelectionModel().getSelectedItem();
         if (selectedCategory != null) {
@@ -175,8 +202,11 @@ public class MainController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else {
+            loadAllMovies();
         }
     }
+
 
     private void toggleMovieSelection() {
         Movie selectedMovie = allMoviesTbl.getSelectionModel().getSelectedItem();

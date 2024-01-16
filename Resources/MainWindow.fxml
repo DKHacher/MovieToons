@@ -9,7 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane onMouseClicked="#HandleBackgroundClick" prefHeight="412.0" prefWidth="556.0" styleClass="anchor" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
    <children>
       <Button layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleCreateMovie" prefHeight="28.0" prefWidth="23.0">
@@ -101,6 +100,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="171.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-radius: 5;" text="Reset" />
+      <Button layoutX="171.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleResetSearch" style="-fx-background-radius: 5;" text="Reset" />
    </children>
 </AnchorPane>
