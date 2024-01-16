@@ -29,7 +29,7 @@ public class NewMovieController implements Initializable {
     @FXML
     private TextField txtMovieTitle, txtFilePath, txtRatingIMDB, txtRatingPersonal;
     @FXML
-    private ComboBox<Category> cmbGenres;
+    private ChoiceBox<Category> choiceGenres;
     @FXML
     private ListView<Category> lvSelectedGenres;
 
@@ -44,11 +44,12 @@ public class NewMovieController implements Initializable {
         }
     }
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadGenres();
-
         selectedGenres = FXCollections.observableArrayList();
         lvSelectedGenres.setItems(selectedGenres);
+
+        loadGenres();
     }
+
 
     @FXML
     private void handleSave(ActionEvent actionEvent) {
@@ -88,8 +89,8 @@ public class NewMovieController implements Initializable {
     }
 
     @FXML
-    private void handleAddGenre() {
-        Category selectedGenre = cmbGenres.getSelectionModel().getSelectedItem();
+    private void handleAddGenre(ActionEvent actionEvent) {
+        Category selectedGenre = choiceGenres.getValue();
         if (selectedGenre != null && !selectedGenres.contains(selectedGenre)) {
             selectedGenres.add(selectedGenre);
         }
@@ -145,7 +146,7 @@ public class NewMovieController implements Initializable {
     private void loadGenres() {
         try {
             categoryModel.loadCategories();
-            cmbGenres.setItems(categoryModel.getObservableCategories());
+            choiceGenres.setItems(categoryModel.getObservableCategories());
         } catch (Exception e) {
             e.printStackTrace();
         }

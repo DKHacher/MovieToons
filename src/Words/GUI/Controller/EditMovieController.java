@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -26,7 +26,7 @@ public class EditMovieController implements Initializable {
     @FXML
     private TextField txtNewMovieTitle, intNewPersonalRating, intNewIMDBRating, txtNewFilePath;
     @FXML
-    private ComboBox<Category> cmbNewGenres;
+    private ChoiceBox<Category> choiceNewGenres;
     @FXML
     private ListView<Category> lvSelectedNewGenres;
 
@@ -99,7 +99,7 @@ public class EditMovieController implements Initializable {
     private void loadGenres() {
         try {
             categoryModel.loadCategories();
-            cmbNewGenres.setItems(categoryModel.getObservableCategories());
+            choiceNewGenres.setItems(categoryModel.getObservableCategories());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,7 +107,7 @@ public class EditMovieController implements Initializable {
 
     @FXML
     private void handleAddGenre() {
-        Category selectedGenre = cmbNewGenres.getSelectionModel().getSelectedItem();
+        Category selectedGenre = choiceNewGenres.getSelectionModel().getSelectedItem();
         if (selectedGenre != null && !selectedNewGenres.contains(selectedGenre)) {
             selectedNewGenres.add(selectedGenre);
         }

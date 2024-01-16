@@ -1,6 +1,5 @@
 .root {
     -fx-background-color: transparent;
-    -fx-text-fill: white;
 }
 
 .anchor {
@@ -86,13 +85,8 @@
     -fx-text-fill: #383b3b;
 }
 
-.combo-box {
+.choice-box {
     -fx-text-fill: white;
     -fx-background-color: #383b3b;
     -fx-background-radius: 5;
-}
-
-.combo-box-popup .list-cell {
-    -fx-background-color: #383b3b;
-    -fx-text-fill: white;
 }
