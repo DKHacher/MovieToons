@@ -2,19 +2,37 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="385.0" prefWidth="231.0" styleClass="anchor" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MovieWindowController">
+<AnchorPane prefHeight="371.0" prefWidth="514.0" styleClass="anchor" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MovieWindowController">
    <children>
-      <Button layoutX="173.0" layoutY="352.0" mnemonicParsing="false" onAction="#WatchMovie" text="Watch" />
-      <Button layoutX="118.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleClose" text="Close" />
       <ImageView fitHeight="190.0" fitWidth="202.0" layoutX="14.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="movieLabel" layoutX="14.0" layoutY="21.0" text="Movie Title" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Label fx:id="genresLabel" layoutX="14.0" layoutY="236.0" text="Genres:" textFill="WHITE" />
+      <Label fx:id="genresLabel" layoutX="14.0" layoutY="316.0" text="Genres:" textFill="WHITE" />
+      <MediaView fx:id="mediaView" fitHeight="270.0" fitWidth="480.0" layoutX="14.0" layoutY="39.0" />
+      <Button layoutX="234.0" layoutY="318.0" mnemonicParsing="false" onAction="#watchMovie" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 100;">
+         <graphic>
+            <ImageView fx:id="playPauseIMG" fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/play.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="volumeImage" fitHeight="26.0" fitWidth="22.0" layoutX="340.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Buttons/Muted.png" />
+         </image>
+      </ImageView>
+      <Slider fx:id="volumeSlider" layoutX="367.0" layoutY="331.0" prefHeight="14.0" prefWidth="119.0" />
+      <Label fx:id="volumeLabel" layoutX="488.0" layoutY="329.0" text="\%" textFill="WHITE" />
    </children>
 </AnchorPane>
