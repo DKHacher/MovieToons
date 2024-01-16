@@ -9,12 +9,12 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.scene.input.MouseEvent;
 
 import java.io.File;
 import java.net.URL;
@@ -99,35 +99,6 @@ public class MovieWindowController implements Initializable {
         isSeeking = false;
     }
 
-
-    private void handleProgressBarClick(MouseEvent event) {
-        if (mediaPlayer != null) {
-            double mouseX = event.getX();
-            double progressBarWidth = progressBar.getWidth();
-            double seekTime = (mouseX / progressBarWidth) * mediaPlayer.getTotalDuration().toSeconds();
-
-            // Seek to the calculated time in the video
-            mediaPlayer.seek(Duration.seconds(seekTime));
-        }
-    }
-
-    public void setMovieDetails(String name, String genres, Movie movie) {
-        movieLabel.setText(name);
-        genresLabel.setText("Genres: " + genres);
-        this.movie = movie;
-
-        // Load thumbnail only if the controller has been initialized
-        if (mediaView != null) {
-            loadThumbnail();
-        }
-    }
-
-    private void initializePlayPauseButton(){
-        if (mediaPlayer != null) {
-            mediaPlayer.pause();
-        }
-    }
-
     @FXML
     private void watchMovie(ActionEvent actionEvent) {
         Timestamp ts = Timestamp.from(Instant.now());
@@ -157,6 +128,44 @@ public class MovieWindowController implements Initializable {
         // Call playPause() to update the play/pause button image
         playPause();
     }
+
+
+
+    private void handleProgressBarClick(MouseEvent event) {
+        if (mediaPlayer != null) {
+            double mouseX = event.getX();
+            double progressBarWidth = progressBar.getWidth();
+            double seekTime = (mouseX / progressBarWidth) * mediaPlayer.getTotalDuration().toSeconds();
+
+            // Check if the video is playing or paused
+            if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                mediaPlayer.seek(Duration.seconds(seekTime));
+            } else {
+                // If the video is paused, seek to the desired time and keep it paused
+                mediaPlayer.pause();
+                mediaPlayer.seek(Duration.seconds(seekTime));
+            }
+        }
+    }
+
+
+    public void setMovieDetails(String name, String genres, Movie movie) {
+        movieLabel.setText(name);
+        genresLabel.setText("Genres: " + genres);
+        this.movie = movie;
+
+        // Load thumbnail only if the controller has been initialized
+        if (mediaView != null) {
+            loadThumbnail();
+        }
+    }
+
+    private void initializePlayPauseButton(){
+        if (mediaPlayer != null) {
+            mediaPlayer.pause();
+        }
+    }
+
 
 
     private void prepareMediaPlayer() {
