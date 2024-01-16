@@ -55,6 +55,16 @@
     -fx-background-color: #ff4326;
 }
 
+.progress-bar-background {
+    -fx-background-color: #383b3b;
+}
+
+/* Style for the custom progress bar progression */
+.progress-bar-progression {
+    -fx-background-color: #ff4326;
+    -fx-background-insets: 0, 1, 1;
+}
+
 .choice-box .label {
     -fx-text-fill: black;
 }

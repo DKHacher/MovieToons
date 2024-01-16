@@ -4,7 +4,9 @@ import Words.BE.Movie;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
@@ -12,6 +14,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.input.MouseEvent;
 
 import java.io.File;
 import java.net.URL;
@@ -33,12 +36,15 @@ public class MovieWindowController implements Initializable {
     private Slider volumeSlider;
     @FXML
     private Label volumeLabel;
+    @FXML
+    private ProgressBar progressBar;
 
     private Movie movie;
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
     private Image playImage, pauseImage, mutedImage, smallVolImage, mediumVolImage, highVolImage;
     private double storedVolumePercent;
+    private boolean isSeeking = false;
 
 
     @Override
@@ -47,12 +53,23 @@ public class MovieWindowController implements Initializable {
       initializeImages();
       initializeVolumeSlider();
       initializePlayPauseButton();
+      initializeProgressBar();
 
     }
 
     private void initializeThumbnail() {
         if (movie != null) {
             loadThumbnail();
+        }
+    }
+
+    private void initializeProgressBar() {
+        if (mediaPlayer != null) {
+            mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                double progress = newValue.toSeconds() / mediaPlayer.getTotalDuration().toSeconds();
+                progressBar.setProgress(progress);
+            });
+            progressBar.setOnMouseClicked(event -> handleProgressBarClick(event));
         }
     }
 
@@ -70,6 +87,28 @@ public class MovieWindowController implements Initializable {
     private void initializeVolumeSlider(){
         volumeHandler();// Calls the volumeHandler method so the Slider works
         volumeSlider.setValue(50); // Sets the start value of the slider to 50% when the program opens up.
+    }
+
+    @FXML
+    private void handleProgressBarPressed() {
+        isSeeking = true;
+    }
+
+    @FXML
+    private void handleProgressBarReleased() {
+        isSeeking = false;
+    }
+
+
+    private void handleProgressBarClick(MouseEvent event) {
+        if (mediaPlayer != null) {
+            double mouseX = event.getX();
+            double progressBarWidth = progressBar.getWidth();
+            double seekTime = (mouseX / progressBarWidth) * mediaPlayer.getTotalDuration().toSeconds();
+
+            // Seek to the calculated time in the video
+            mediaPlayer.seek(Duration.seconds(seekTime));
+        }
     }
 
     public void setMovieDetails(String name, String genres, Movie movie) {
@@ -95,21 +134,16 @@ public class MovieWindowController implements Initializable {
         movie.setLastView(ts);
 
         // Toggle between play and pause
-        if (isPlaying) {
-            mediaPlayer.pause();
+        if (mediaPlayer != null) {
+            MediaPlayer.Status status = mediaPlayer.getStatus();
+            if (status == MediaPlayer.Status.PLAYING) {
+                mediaPlayer.pause();
+            } else if (status == MediaPlayer.Status.PAUSED || status == MediaPlayer.Status.READY) {
+                mediaPlayer.play();
+            }
         } else {
-            // Create Media and MediaPlayer
-            Media media = new Media(new File(movie.getFilePath()).toURI().toString());
-            mediaPlayer = new MediaPlayer(media);
-
-            // Bind MediaPlayer to MediaView
-            mediaView.setMediaPlayer(mediaPlayer);
-
-            // Set aspect ratio
-            mediaView.setFitWidth(480);
-            mediaView.setFitHeight(270);
-
-            // Play the video
+            // Media player is not initialized, prepare and play
+            prepareMediaPlayer();
             mediaPlayer.play();
 
             // Close
@@ -118,11 +152,29 @@ public class MovieWindowController implements Initializable {
         }
 
         // Update the play/pause status
-        isPlaying = !isPlaying;
+        isPlaying = mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING;
 
         // Call playPause() to update the play/pause button image
         playPause();
     }
+
+
+    private void prepareMediaPlayer() {
+        // Create Media and MediaPlayer
+        Media media = new Media(new File(movie.getFilePath()).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+
+        // Bind MediaPlayer to MediaView
+        mediaView.setMediaPlayer(mediaPlayer);
+
+        // Set aspect ratio
+        mediaView.setFitWidth(480);
+        mediaView.setFitHeight(270);
+
+        // Initialize the progress bar listener
+        initializeProgressBar();
+    }
+
 
     private void loadThumbnail() {
         // Create Media and MediaPlayer for loading the thumbnail
@@ -143,23 +195,11 @@ public class MovieWindowController implements Initializable {
         }
     }
 
-    private void updatePlayPauseImage() {
+    private void playPause() {
         if (mediaPlayer != null) {
             MediaPlayer.Status status = mediaPlayer.getStatus();
 
             if (status == MediaPlayer.Status.PLAYING) {
-                playPauseIMG.setImage(playImage);
-            } else if (status == MediaPlayer.Status.PAUSED || status == MediaPlayer.Status.READY) {
-                playPauseIMG.setImage(pauseImage);
-            } else if (status == MediaPlayer.Status.STOPPED) {
-                playPauseIMG.setImage(playImage);
-            }
-        }
-    }
-
-    private void playPause() {
-        if (mediaPlayer != null) {
-            if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
                 mediaPlayer.pause();
             } else {
                 mediaPlayer.play();
@@ -169,22 +209,29 @@ public class MovieWindowController implements Initializable {
         }
     }
 
+    private void updatePlayPauseImage() {
+        MediaPlayer.Status status = mediaPlayer.getStatus();
 
-    public void volumeHandler(){
+        if (status == MediaPlayer.Status.PLAYING) {
+            playPauseIMG.setImage(playImage);
+        } else {
+            playPauseIMG.setImage(pauseImage);
+        }
+    }
 
+    public void volumeHandler() {
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
-            if (mediaPlayer != null)
-                mediaPlayer.setVolume(newVal.doubleValue() / 100.0);
-            updateVolumeLabel(newVal.doubleValue());
-
+            if (mediaPlayer != null) {
+                double scaledVolume = Math.pow(newVal.doubleValue() / 100.0, 2);
+                mediaPlayer.setVolume(scaledVolume);
+                updateVolumeLabel(newVal.doubleValue());
+            }
         });
-        //setting the initial volume
         updateVolumeLabel(volumeSlider.getValue());
     }
 
     private void updateVolumeLabel(double volumePercentage) {
         storedVolumePercent = volumePercentage;
-
         volumeLabel.setText(String.format("%.0f%%", volumePercentage));
 
         if (volumePercentage == 0) {
