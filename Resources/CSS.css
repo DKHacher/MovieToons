@@ -1,0 +1,98 @@
+.root {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.anchor {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #262828, #131414);
+    -fx-background-size: cover;
+}
+
+.button {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #ff4326, #c21d04);
+    -fx-text-fill: white;
+    -fx-background-radius: 15;
+}
+
+
+.table-view {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #131414, #0b0b0b);
+    -fx-border-color: transparent;
+}
+
+.table-row-cell .table-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: linear-gradient(from 0% 0% to 0% 100%, #ff4326, #c21d04);
+}
+
+.table-row-cell:hover .table-cell {
+    -fx-text-fill: #383b3b;
+}
+
+.table-column .column-header-background {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #131414, #0b0b0b);
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-column .label {
+    -fx-text-fill: white;
+}
+
+.table-column .table-header {
+    -fx-border-color: transparent #ff4326 transparent transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: #383b3b;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #ff4326;
+}
+
+.choice-box .label {
+    -fx-text-fill: black;
+}
+
+.text-field {
+    -fx-background-color: #383b3b;
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+}
+
+.list-view {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #131414, #0b0b0b);
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+
+.list-view .cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.list-view .cell:selected {
+    -fx-background-color: transparent;
+    -fx-text-fill: linear-gradient(from 0% 0% to 0% 100%, #ff4326, #c21d04);
+}
+
+.list-view .cell:hover {
+    -fx-text-fill: #383b3b;
+}
+
+.combo-box {
+    -fx-text-fill: white;
+    -fx-background-color: #383b3b;
+    -fx-background-radius: 5;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #383b3b;
+    -fx-text-fill: white;
+}

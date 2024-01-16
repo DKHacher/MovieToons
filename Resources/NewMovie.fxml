@@ -8,40 +8,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="367.0" prefWidth="337.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.NewMovieController">
+<AnchorPane prefHeight="376.0" prefWidth="336.0" styleClass="anchor" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.NewMovieController">
    <children>
-      <TextField fx:id="txtMovieTitle" layoutX="15.0" layoutY="32.0" promptText="Title" />
-      <ComboBox fx:id="cmbGenres" layoutX="14.0" layoutY="81.0" prefHeight="26.0" prefWidth="103.0" promptText="Pick Genre" />
+      <TextField fx:id="txtMovieTitle" layoutX="15.0" layoutY="32.0" promptText="Input title" />
+      <ComboBox fx:id="cmbGenres" editable="true" layoutX="14.0" layoutY="81.0" prefHeight="26.0" prefWidth="103.0" promptText="Choose" styleClass="combo-box" />
       <ListView fx:id="lvSelectedGenres" layoutX="14.0" layoutY="114.0" prefHeight="171.0" prefWidth="308.0" />
-      <Button layoutX="228.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleClose" text="Close" />
-      <Button layoutX="281.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
-      <TextField fx:id="txtRatingPersonal" layoutX="14.0" layoutY="304.0" promptText="Rating" />
-      <Label layoutX="15.0" layoutY="14.0" text="Title:">
+      <Button layoutX="234.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleClose" text="Close" />
+      <Button layoutX="283.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+      <TextField fx:id="txtRatingPersonal" layoutX="14.0" layoutY="304.0" promptText="Input personal score" />
+      <Label layoutX="15.0" layoutY="14.0" text="Title:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="15.0" layoutY="62.0" text="Genre:">
+      <Label layoutX="15.0" layoutY="62.0" text="Genre:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="15.0" layoutY="286.0" text="Personal Score:">
+      <Label layoutX="15.0" layoutY="286.0" text="Personal Score:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtRatingIMDB" layoutX="173.0" layoutY="304.0" promptText="Rating" />
-      <Label layoutX="173.0" layoutY="286.0" text="IMDB Score:">
+      <TextField fx:id="txtRatingIMDB" layoutX="173.0" layoutY="304.0" promptText="Input IMDB score" />
+      <Label layoutX="173.0" layoutY="286.0" text="IMDB Score:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <Button fx:id="btnAddGenre" layoutX="123.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleAddGenre" text="+" />
       <Button fx:id="btnRemoveGenre" layoutX="152.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleRemoveGenre" prefHeight="26.0" prefWidth="25.0" text="-" />
-      <TextField fx:id="txtFilePath" editable="false" layoutX="176.0" layoutY="32.0" prefHeight="26.0" prefWidth="103.0" promptText="Path" />
-      <Button layoutX="283.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleChooseFile" text="Pick" />
-      <Label layoutX="176.0" layoutY="14.0" text="File Path:">
+      <TextField fx:id="txtFilePath" editable="false" layoutX="176.0" layoutY="32.0" prefHeight="26.0" prefWidth="103.0" promptText="Choose filepath" />
+      <Button layoutX="286.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleChooseFile" text="Pick" />
+      <Label layoutX="176.0" layoutY="14.0" text="File Path:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

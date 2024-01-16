@@ -1,45 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseClicked="#HandleBackgroundClick" prefHeight="420.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
+
+<AnchorPane onMouseClicked="#HandleBackgroundClick" prefHeight="412.0" prefWidth="556.0" styleClass="anchor" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MainController">
    <children>
-      <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateMovie" text="New" />
-      <Button layoutX="329.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteMovie" text="Delete" />
-      <Button layoutX="395.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleCreateCategory" text="New" />
-      <Button layoutX="442.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleUpdateCategory" text="Edit" />
-      <Button layoutX="502.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteCategory" text="Delete" />
-      <Label layoutX="395.0" layoutY="50.0" text="Category">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
+      <Button layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleCreateMovie" prefHeight="28.0" prefWidth="23.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="349.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleDeleteMovie" prefHeight="28.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="396.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleCreateCategory" prefHeight="26.0" prefWidth="36.0" style="-fx-background-radius: 100;">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="438.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleUpdateCategory" prefHeight="28.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Edit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="502.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleDeleteCategory">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
       <TextField fx:id="txtMovieSearch" layoutX="14.0" layoutY="14.0" promptText="Search" />
-      <TableView fx:id="categoriesTbl" layoutX="395.0" layoutY="68.0" onMouseClicked="#handleCategoryClick" prefHeight="307.0" prefWidth="158.0">
+      <TableView fx:id="categoriesTbl" layoutX="396.0" layoutY="50.0" onMouseClicked="#handleCategoryClick" prefHeight="307.0" prefWidth="141.0" styleClass="table-column">
          <columns>
-            <TableColumn fx:id="colCatType" prefWidth="157.59999408721924" resizable="false" text="Name" />
+            <TableColumn fx:id="colCatType" maxWidth="139.20000610351562" prefWidth="139.20000610351562" resizable="false" styleClass="column-header-background" text="Category" />
          </columns>
       </TableView>
-      <TableView fx:id="allMoviesTbl" layoutX="14.0" layoutY="68.0" prefHeight="307.0" prefWidth="365.0">
+      <TableView fx:id="allMoviesTbl" layoutX="15.0" layoutY="50.0" prefHeight="307.0" styleClass="table-column">
          <columns>
-            <TableColumn fx:id="colTitleAll" prefWidth="89.59994506835938" resizable="false" text="Name" />
-            <TableColumn fx:id="colGenreAll" prefWidth="98.39990234375" resizable="false" text="Genres" />
-            <TableColumn fx:id="colRatingPersonalAll" prefWidth="54.4000244140625" resizable="false" text="Rating" />
-            <TableColumn fx:id="colRatingIMDBAll" prefWidth="40.7999267578125" resizable="false" text="IMDB" />
-            <TableColumn fx:id="colLastViewAll" prefWidth="80.79995117187502" resizable="false" text="Last Viewed" />
+            <TableColumn fx:id="colTitleAll" prefWidth="89.59994506835938" resizable="false" text="Name">
+               <styleClass>
+                  <String fx:value="column-header-background" />
+                  <String fx:value="table-header" />
+               </styleClass>
+            </TableColumn>
+            <TableColumn fx:id="colGenreAll" prefWidth="90.40001678466797" resizable="false" text="Genres">
+               <styleClass>
+                  <String fx:value="column-header-background" />
+                  <String fx:value="table-header" />
+               </styleClass>
+            </TableColumn>
+            <TableColumn fx:id="colRatingPersonalAll" prefWidth="54.4000244140625" resizable="false" text="Rating">
+               <styleClass>
+                  <String fx:value="column-header-background" />
+                  <String fx:value="table-header" />
+               </styleClass>
+            </TableColumn>
+            <TableColumn fx:id="colRatingIMDBAll" prefWidth="46.39994812011719" resizable="false" text="IMDB">
+               <styleClass>
+                  <String fx:value="column-header-background" />
+                  <String fx:value="table-header" />
+               </styleClass>
+            </TableColumn>
+            <TableColumn fx:id="colLastViewAll" prefWidth="84.79998779296875" resizable="false" styleClass="column-header-background" text="Last Viewed" />
          </columns>
       </TableView>
-      <Label layoutX="14.0" layoutY="50.0" text="All Movies">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Button layoutX="63.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleEditAllMovies" text="Edit" />
+      <Button layoutX="53.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleEditAllMovies" prefHeight="26.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Edit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="171.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-radius: 5;" text="Reset" />
    </children>
 </AnchorPane>
