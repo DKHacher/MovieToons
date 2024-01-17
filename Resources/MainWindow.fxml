@@ -21,7 +21,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="349.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleDeleteMovie" prefHeight="28.0" prefWidth="36.0">
+      <Button layoutX="86.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleDeleteMovie" prefHeight="28.0" prefWidth="36.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -92,7 +92,7 @@
             <TableColumn fx:id="colLastViewAll" prefWidth="84.79998779296875" resizable="false" styleClass="column-header-background" text="Last Viewed" />
          </columns>
       </TableView>
-      <Button layoutX="53.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleEditAllMovies" prefHeight="26.0" prefWidth="36.0">
+      <Button layoutX="50.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleEditAllMovies" prefHeight="26.0" prefWidth="36.0">
          <graphic>
             <ImageView fitHeight="56.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -104,5 +104,14 @@
       <Button layoutX="291.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleResetSearch" style="-fx-background-radius: 5;" text="Reset" />
       <ChoiceBox fx:id="ratingTypeChoiceBox" layoutX="174.0" layoutY="14.0" prefHeight="26.0" prefWidth="68.0" />
       <TextField fx:id="ratingTextField" layoutX="248.0" layoutY="14.0" prefHeight="26.0" prefWidth="36.0" />
+      <Button layoutX="349.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleOpenMovie" prefHeight="28.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/play.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

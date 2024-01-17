@@ -10,14 +10,14 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="387.0" prefWidth="514.0" styleClass="anchor" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MovieWindowController">
+<AnchorPane prefHeight="396.0" prefWidth="514.0" styleClass="anchor" stylesheets="@CSS.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Words.GUI.Controller.MovieWindowController">
    <children>
       <ImageView fitHeight="190.0" fitWidth="202.0" layoutX="14.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="movieLabel" layoutX="14.0" layoutY="21.0" text="Movie Title" textFill="WHITE">
+      <Label fx:id="movieLabel" layoutX="14.0" layoutY="14.0" text="Movie Title" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Label fx:id="genresLabel" layoutX="17.0" layoutY="347.0" text="Genres:" textFill="WHITE" />
+      <Label fx:id="genresLabel" layoutX="14.0" layoutY="327.0" text="Genres:" textFill="WHITE" />
       <MediaView fx:id="mediaView" fitHeight="270.0" fitWidth="480.0" layoutX="14.0" layoutY="39.0" />
       <Button layoutX="237.0" layoutY="336.0" mnemonicParsing="false" onAction="#watchMovie" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 100;">
          <graphic>
@@ -36,5 +36,7 @@
       <Slider fx:id="volumeSlider" layoutX="368.0" layoutY="349.0" prefHeight="14.0" prefWidth="119.0" />
       <Label fx:id="volumeLabel" layoutX="482.0" layoutY="347.0" text="\%" textFill="WHITE" />
       <ProgressBar fx:id="progressBar" layoutX="14.0" layoutY="309.0" onMousePressed="#handleProgressBarPressed" onMouseReleased="#handleProgressBarReleased" prefHeight="18.0" prefWidth="480.0" progress="0.0" />
+      <Button layoutX="14.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleOpenInSystemMedia" text="Open" />
+      <Label layoutX="66.0" layoutY="366.0" text="in Media Player" textFill="WHITE" />
    </children>
 </AnchorPane>

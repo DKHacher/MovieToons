@@ -4,6 +4,7 @@ import Words.BE.Movie;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
@@ -16,7 +17,9 @@ import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -130,7 +133,32 @@ public class MovieWindowController implements Initializable {
         playPause();
     }
 
+    @FXML
+    private void handleOpenInSystemMedia(ActionEvent event) {
+        if (movie != null) {
+            String filePath = movie.getFilePath();
+            File videoFile = new File(filePath);
 
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
+                try {
+                    Desktop.getDesktop().open(videoFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                alertDesktopAPI();
+            }
+        }
+    }
+
+    private void alertDesktopAPI() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Desktop API not supported");
+        alert.setHeaderText("Desktop API not supported!");
+        alert.setContentText("Desktop API is not supported on this platform.");
+
+        alert.showAndWait();
+    }
 
     private void handleProgressBarClick(MouseEvent event) {
         if (mediaPlayer != null) {

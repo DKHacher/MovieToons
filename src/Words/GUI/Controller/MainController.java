@@ -120,19 +120,19 @@ public class MainController implements Initializable {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         timestamp = Timestamp.valueOf(timestamp.toLocalDateTime().minusYears(2));
         String moviesToDelete = "Movies to Delete: ";
-        for (Movie movie:allMoviesTbl.getItems()) {
-            if (movie.getRatingPersonal() < 6 && movie.getLastView().before(timestamp)){
+        for (Movie movie : allMoviesTbl.getItems()) {
+            if (movie.getRatingPersonal() < 6 && movie.getLastView() != null && movie.getLastView().before(timestamp)) {
                 moviesToDelete += movie.getMovieTitle() + ", ";
             }
         }
-        if (moviesToDelete.equals("Movies to Delete: ")){
+        if (moviesToDelete.equals("Movies to Delete: ")) {
             moviesToDelete += "None";
-        }
-        else{
-            moviesToDelete = moviesToDelete.substring(0, moviesToDelete.length()-2);
+        } else {
+            moviesToDelete = moviesToDelete.substring(0, moviesToDelete.length() - 2);
         }
         moviesToDeleteAlert(moviesToDelete);
     }
+
 
     //FXML
     @FXML
@@ -147,6 +147,16 @@ public class MainController implements Initializable {
         if (selectedMovie != null) {
             openMovieEdit();
             allMoviesTbl.refresh();
+        } else {
+            noMovieAlert();
+        }
+    }
+
+    @FXML
+    private void handleOpenMovie() {
+        Movie selectedMovie = allMoviesTbl.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            openMovieWindow();
         } else {
             noMovieAlert();
         }
