@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -12,8 +14,22 @@
    <children>
       <TextField fx:id="txtMovieTitle" layoutX="15.0" layoutY="32.0" promptText="Input title" />
       <ListView fx:id="lvSelectedGenres" layoutX="14.0" layoutY="114.0" prefHeight="171.0" prefWidth="308.0" />
-      <Button layoutX="234.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleClose" text="Close" />
-      <Button layoutX="283.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+      <Button layoutX="247.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleClose">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Close.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="288.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleSave">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Save.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <Label layoutX="15.0" layoutY="14.0" text="Title:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -34,8 +50,22 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="btnAddGenre" layoutX="123.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleAddGenre" text="+" />
-      <Button fx:id="btnRemoveGenre" layoutX="152.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleRemoveGenre" prefHeight="26.0" prefWidth="25.0" text="-" />
+      <Button fx:id="btnAddGenre" layoutX="123.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleAddGenre" prefHeight="28.0" prefWidth="26.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Add.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="btnRemoveGenre" layoutX="165.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleRemoveGenre" prefHeight="26.0" prefWidth="25.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Buttons/Remove.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <TextField fx:id="txtFilePath" editable="false" layoutX="176.0" layoutY="32.0" prefHeight="26.0" prefWidth="103.0" promptText="Choose filepath" />
       <Button layoutX="286.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleChooseFile" text="Pick" />
       <Label layoutX="176.0" layoutY="14.0" text="File Path:" textFill="WHITE">
