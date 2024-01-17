@@ -48,4 +48,9 @@ public class MovieManager implements IMovieDataAccess {
         return searchResult;
     }
 
+    @Override
+    public List<Movie> getMovieByRating(String ratingType, int rating) throws Exception {
+        return movieDAO.getMovieByRating(ratingType, rating);
+    }
+
 }

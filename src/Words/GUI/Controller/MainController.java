@@ -39,6 +39,10 @@ public class MainController implements Initializable {
     private TableColumn <Category, String> colCatType;
     @FXML
     private TextField txtMovieSearch;
+    @FXML
+    private ChoiceBox<String> ratingTypeChoiceBox;
+    @FXML
+    private TextField ratingTextField;
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;
@@ -61,6 +65,7 @@ public class MainController implements Initializable {
         initializeTableColumns();
         initializeSearchListener();
         initializeDoubleClickCheck();
+        initializeChoiceBox();
     }
 
     private void initializeTableColumns() {
@@ -102,6 +107,10 @@ public class MainController implements Initializable {
 
     private void initializeDoubleClickCheck() {
         allMoviesTbl.setOnMouseClicked(this::handleMovieDoubleClick);
+    }
+
+    private void initializeChoiceBox() {
+        ratingTypeChoiceBox.setItems(FXCollections.observableArrayList("Personal", "IMDB"));
     }
 
     //FXML
