@@ -27,11 +27,13 @@ public class NewMovieController implements Initializable {
     private CategoryModel categoryModel;
 
     @FXML
-    private TextField txtMovieTitle, txtFilePath, txtRatingIMDB, txtRatingPersonal;
+    private TextField txtMovieTitle, txtFilePath;
     @FXML
     private ChoiceBox<Category> choiceGenres;
     @FXML
     private ListView<Category> lvSelectedGenres;
+    @FXML
+    private ChoiceBox<Integer> choiceRatingIMDB, choiceRatingPersonal;
 
     private ObservableList<Category> selectedGenres;
 
@@ -46,7 +48,8 @@ public class NewMovieController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selectedGenres = FXCollections.observableArrayList();
         lvSelectedGenres.setItems(selectedGenres);
-
+        choiceRatingIMDB.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        choiceRatingPersonal.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
         loadGenres();
     }
 
@@ -56,8 +59,8 @@ public class NewMovieController implements Initializable {
         try {
             String movieTitle = txtMovieTitle.getText();
             String originalFilePath = txtFilePath.getText();
-            int ratingIMDB = Integer.parseInt(txtRatingIMDB.getText());
-            int ratingPersonal = Integer.parseInt(txtRatingPersonal.getText());
+            int ratingIMDB = choiceRatingIMDB.getValue();
+            int ratingPersonal = choiceRatingPersonal.getValue();
             ArrayList<Category> selectedGenresList = new ArrayList<>(selectedGenres);
 
             if (isValidMediaFile(originalFilePath)) {
@@ -67,7 +70,7 @@ public class NewMovieController implements Initializable {
                 File copiedFile = new File(dataFolder, originalFile.getName());
 
                 //Perform the copy
-                if (!copiedFile.exists()) {;
+                if (!copiedFile.exists()) {
                     Files.copy(originalFile.toPath(), copiedFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 }
 

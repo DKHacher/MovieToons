@@ -24,9 +24,11 @@ public class EditMovieController implements Initializable {
     private CategoryModel categoryModel;
     private Movie selectedMovie;
     @FXML
-    private TextField txtNewMovieTitle, intNewPersonalRating, intNewIMDBRating, txtNewFilePath;
+    private TextField txtNewMovieTitle, txtNewFilePath;
     @FXML
     private ChoiceBox<Category> choiceNewGenres;
+    @FXML
+    private ChoiceBox<Integer> choiceNewPersonalRating, choiceNewIMDBRating;
     @FXML
     private ListView<Category> lvSelectedNewGenres;
 
@@ -51,6 +53,9 @@ public class EditMovieController implements Initializable {
 
         selectedNewGenres = FXCollections.observableArrayList();
         lvSelectedNewGenres.setItems(selectedNewGenres);
+
+        choiceNewPersonalRating.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        choiceNewIMDBRating.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
     }
 
     @FXML
@@ -62,8 +67,8 @@ public class EditMovieController implements Initializable {
     @FXML
     private void handleSave(ActionEvent actionEvent) {
         String newMovieTitle = txtNewMovieTitle.getText();
-        int newRatingIMDB = Integer.parseInt(intNewIMDBRating.getText());
-        int newRatingPersonal = Integer.parseInt(intNewPersonalRating.getText());
+        int newRatingIMDB = choiceNewIMDBRating.getValue();
+        int newRatingPersonal = choiceNewPersonalRating.getValue();
         String newFilePath = txtNewFilePath.getText();
         ArrayList<Category> categoryList = new ArrayList<>(selectedNewGenres);
 
@@ -88,12 +93,13 @@ public class EditMovieController implements Initializable {
         this.selectedMovie = selectedMovie;
         if (selectedMovie != null) {
             txtNewMovieTitle.setText(selectedMovie.getMovieTitle());
-            intNewPersonalRating.setText(String.valueOf(selectedMovie.getRatingPersonal()));
-            intNewIMDBRating.setText(String.valueOf(selectedMovie.getRatingIMDB()));
+            choiceNewPersonalRating.setValue(selectedMovie.getRatingPersonal());
+            choiceNewIMDBRating.setValue(selectedMovie.getRatingIMDB());
             txtNewFilePath.setText(selectedMovie.getFilePath());
             selectedNewGenres.addAll(selectedMovie.getCategories());
         }
     }
+
 
 
     private void loadGenres() {
