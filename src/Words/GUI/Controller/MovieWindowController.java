@@ -87,6 +87,7 @@ public class MovieWindowController implements Initializable {
     private void initializeVolumeSlider(){
         volumeHandler();// Calls the volumeHandler method so the Slider works
         volumeSlider.setValue(50); // Sets the start value of the slider to 50% when the program opens up.
+        volumeLabel.setText("50%");
     }
 
     @FXML

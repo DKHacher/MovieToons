@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="259a819c-313c-45df-81cc-680ef624e546" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/BLL/MovieManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/BLL/MovieManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/DAL/IMovieDataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/DAL/IMovieDataAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/DAL/db/MovieDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/DAL/db/MovieDAO_DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/GUI/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Words/GUI/Model/MovieModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Model/MovieModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Words/GUI/Controller/MovieWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Words/GUI/Controller/MovieWindowController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,23 +178,13 @@
       <workItem from="1704743126017" duration="1470000" />
       <workItem from="1704791127697" duration="3295000" />
       <workItem from="1704996520218" duration="2442000" />
-      <workItem from="1705311256247" duration="3614000" />
+      <workItem from="1705311256247" duration="4117000" />
+      <workItem from="1705482279261" duration="463000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Words/GUI/Controller/MainController.java</url>
-          <line>336</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MovieToons$Main.ic" NAME="Main Coverage Results" MODIFIED="1704359890497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
