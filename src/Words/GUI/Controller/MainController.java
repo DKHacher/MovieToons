@@ -66,6 +66,9 @@ public class MainController implements Initializable {
         initializeSearchListener();
         initializeDoubleClickCheck();
         initializeChoiceBox();
+
+        //must be loaded last
+        moviesToDeleteInitialize();
     }
 
     private void initializeTableColumns() {
@@ -111,6 +114,24 @@ public class MainController implements Initializable {
 
     private void initializeChoiceBox() {
         ratingTypeChoiceBox.setItems(FXCollections.observableArrayList("Personal", "IMDB"));
+    }
+
+    private void moviesToDeleteInitialize() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        timestamp = Timestamp.valueOf(timestamp.toLocalDateTime().minusYears(2));
+        String moviesToDelete = "Movies to Delete: ";
+        for (Movie movie:allMoviesTbl.getItems()) {
+            if (movie.getRatingPersonal() < 6 && movie.getLastView().before(timestamp)){
+                moviesToDelete += movie.getMovieTitle() + ", ";
+            }
+        }
+        if (moviesToDelete.equals("Movies to Delete: ")){
+            moviesToDelete += "None";
+        }
+        else{
+            moviesToDelete = moviesToDelete.substring(0, moviesToDelete.length()-2);
+        }
+        moviesToDeleteAlert(moviesToDelete);
     }
 
     //FXML
@@ -404,6 +425,15 @@ public class MainController implements Initializable {
         alert.setTitle("No Category Selected");
         alert.setHeaderText("No category selected!");
         alert.setContentText("Please select a category.");
+
+        alert.showAndWait();
+    }
+
+    private void moviesToDeleteAlert(String moviesToDelete) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Movies To Delete");
+        alert.setHeaderText("Movies To Delete");
+        alert.setContentText(moviesToDelete);
 
         alert.showAndWait();
     }
