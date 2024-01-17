@@ -403,5 +403,6 @@ public class MainController implements Initializable {
     private void HandleBackgroundClick(MouseEvent mouseEvent) {
         allMoviesTbl.getSelectionModel().clearSelection();
         categoriesTbl.getSelectionModel().clearSelection();
+        loadAllMovies();
     }
 }
