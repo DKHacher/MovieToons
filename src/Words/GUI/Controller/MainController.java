@@ -40,9 +40,8 @@ public class MainController implements Initializable {
     @FXML
     private TextField txtMovieSearch;
     @FXML
-    private ChoiceBox<String> ratingTypeChoiceBox;
-    @FXML
-    private TextField ratingTextField;
+    private ChoiceBox<Integer> ratingMin, ratingMax;
+
 
     private MovieModel movieModel;
     private CategoryModel categoryModel;
@@ -106,6 +105,22 @@ public class MainController implements Initializable {
                e.printStackTrace();
            }
         });
+
+        ratingMin.valueProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                movieModel.searchRating(newValue);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        ratingMax.valueProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                movieModel.searchRating(newValue);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void initializeDoubleClickCheck() {
@@ -113,7 +128,8 @@ public class MainController implements Initializable {
     }
 
     private void initializeChoiceBox() {
-        ratingTypeChoiceBox.setItems(FXCollections.observableArrayList("Personal", "IMDB"));
+        ratingMin.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        ratingMax.setItems(FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
     }
 
     private void moviesToDeleteInitialize() {

@@ -46,4 +46,10 @@ public class MovieManager implements IMovieDataAccess {
         return movieSearcher.searchMovies(searchBase, query);
     }
 
+    public List<Movie> getMoviesByRating(List<Movie> searchBase, int rating) throws Exception {
+        return movieSearcher.searchRating(searchBase, rating);
+    }
+
 }
+
+
