@@ -42,10 +42,8 @@ public class MovieManager implements IMovieDataAccess {
         return movieDAO.getMoviesByCategory(category);
     }
 
-    public List<Movie> searchMovies(String query) throws Exception {
-        List<Movie> allMovies = getAllMovies();
-        List<Movie> searchResult = movieSearcher.search(allMovies, query);
-        return searchResult;
+    public List<Movie> searchMovies(List<Movie> searchBase, String query) throws Exception {
+        return movieSearcher.searchMovies(searchBase, query);
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MovieSearcher {
 
-    public List<Movie> search(List<Movie> searchBase, String query) {
+    public static List<Movie> searchMovies(List<Movie> searchBase, String query) {
         List<Movie> searchResult = new ArrayList<>();
         for (Movie movie : searchBase) {
             if (compareToMovieTitle(query, movie)) {
@@ -17,12 +17,12 @@ public class MovieSearcher {
         return searchResult;
     }
 
-    private boolean compareToMovieTitle(String query, Movie movie) {
+    private static boolean compareToMovieTitle(String query, Movie movie) {
         return movie.getMovieTitle().toLowerCase().contains(query.toLowerCase());
     }
 
 
-    public List<Movie> searchByRating(List<Movie> searchBase, String ratingType, int rating) {
+    public static List<Movie> searchByRating(List<Movie> searchBase, String ratingType, int rating) {
         List<Movie> searchResult = new ArrayList<>();
         for (Movie movie : searchBase) {
             if ("IMDB".equalsIgnoreCase(ratingType) && movie.getRatingIMDB() == rating) {
