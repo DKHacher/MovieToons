@@ -5,6 +5,7 @@ import Words.BE.Movie;
 import Words.GUI.Model.CategoryModel;
 import Words.GUI.Model.MovieModel;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,8 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     @FXML
+    private ChoiceBox ratingNumberChoiceBox;
+    @FXML
     private TableView<Movie> allMoviesTbl;
     @FXML
     private TableView<Category> categoriesTbl;
@@ -41,9 +44,6 @@ public class MainController implements Initializable {
     private TextField txtMovieSearch;
     @FXML
     private ChoiceBox<String> ratingTypeChoiceBox;
-    @FXML
-    private TextField ratingTextField;
-
     private MovieModel movieModel;
     private CategoryModel categoryModel;
     private boolean isCategorySelected = false;
@@ -114,6 +114,7 @@ public class MainController implements Initializable {
 
     private void initializeChoiceBox() {
         ratingTypeChoiceBox.setItems(FXCollections.observableArrayList("Personal", "IMDB"));
+        ratingNumberChoiceBox.setItems(FXCollections.observableArrayList("0", "1","2","3","4","5","6","7","8","9","10"));
     }
 
     private void moviesToDeleteInitialize() {
@@ -453,5 +454,14 @@ public class MainController implements Initializable {
         allMoviesTbl.getSelectionModel().clearSelection();
         categoriesTbl.getSelectionModel().clearSelection();
         loadAllMovies();
+    }
+
+    public void filterMoviesOnRating(ActionEvent actionEvent) {
+        if (!ratingNumberChoiceBox.getSelectionModel().getSelectedItem().equals("") && ratingTypeChoiceBox.getSelectionModel().getSelectedItem().equals("")) {
+            List<Movie> moviesByCategory = movieModel.getMoviesByRating(ratingTypeChoiceBox.getValue(), (Integer) ratingNumberChoiceBox.getValue());
+            allMoviesTbl.setItems(FXCollections.observableArrayList(moviesByCategory));
+        } else {
+            loadAllMovies();
+        }
     }
 }

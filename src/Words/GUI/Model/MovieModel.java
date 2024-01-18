@@ -78,6 +78,7 @@ public class MovieModel {
     }
 
 
-
-
+    public List<Movie> getMoviesByRating(String ratingType, int rating) throws Exception {
+        return movieManager.getMoviesByRating(allMovies, ratingType, rating);
+    }
 }

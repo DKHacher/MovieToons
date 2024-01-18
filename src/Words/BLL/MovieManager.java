@@ -46,4 +46,16 @@ public class MovieManager implements IMovieDataAccess {
         return movieSearcher.searchMovies(searchBase, query);
     }
 
+    public List<Movie> getMoviesByRating(List<Movie> allMovies, String ratingType, int rating) throws Exception {
+        List<Movie> ResultList = null;
+        for (Movie movie:allMovies) {
+            if (ratingType.equals("IMDB")){
+
+            }
+            else if (ratingType.equals("Personal")){
+
+            }
+        }
+        return ResultList;
+    }
 }
