@@ -5,6 +5,7 @@ import Words.BE.Movie;
 import Words.DAL.IMovieDataAccess;
 import Words.DAL.db.MovieDAO_DB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieManager implements IMovieDataAccess {
@@ -47,13 +48,17 @@ public class MovieManager implements IMovieDataAccess {
     }
 
     public List<Movie> getMoviesByRating(List<Movie> allMovies, String ratingType, int rating) throws Exception {
-        List<Movie> ResultList = null;
+        List<Movie> ResultList = new ArrayList<>();
         for (Movie movie:allMovies) {
             if (ratingType.equals("IMDB")){
-
+                if (movie.getRatingIMDB() == rating){
+                    ResultList.add(movie);
+                }
             }
             else if (ratingType.equals("Personal")){
-
+                if (movie.getRatingPersonal() == rating){
+                    ResultList.add(movie);
+                }
             }
         }
         return ResultList;

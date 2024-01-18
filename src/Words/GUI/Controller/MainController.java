@@ -456,10 +456,10 @@ public class MainController implements Initializable {
         loadAllMovies();
     }
 
-    public void filterMoviesOnRating(ActionEvent actionEvent) {
-        if (!ratingNumberChoiceBox.getSelectionModel().getSelectedItem().equals("") && ratingTypeChoiceBox.getSelectionModel().getSelectedItem().equals("")) {
-            List<Movie> moviesByCategory = movieModel.getMoviesByRating(ratingTypeChoiceBox.getValue(), (Integer) ratingNumberChoiceBox.getValue());
-            allMoviesTbl.setItems(FXCollections.observableArrayList(moviesByCategory));
+    public void filterMoviesOnRating(ActionEvent actionEvent) throws Exception {
+        if (ratingNumberChoiceBox.getValue() != null && !ratingNumberChoiceBox.getValue().equals("") && ratingTypeChoiceBox.getValue() != null && !ratingTypeChoiceBox.getValue().equals("")) {
+            List<Movie> moviesByRating = movieModel.getMoviesByRating(ratingTypeChoiceBox.getValue(), Integer.parseInt((String) ratingNumberChoiceBox.getValue()));
+            allMoviesTbl.setItems(FXCollections.observableArrayList(moviesByRating));
         } else {
             loadAllMovies();
         }
