@@ -21,16 +21,4 @@ public class MovieSearcher {
         return movie.getMovieTitle().toLowerCase().contains(query.toLowerCase());
     }
 
-
-    public static List<Movie> searchByRating(List<Movie> searchBase, String ratingType, int rating) {
-        List<Movie> searchResult = new ArrayList<>();
-        for (Movie movie : searchBase) {
-            if ("IMDB".equalsIgnoreCase(ratingType) && movie.getRatingIMDB() == rating) {
-                searchResult.add(movie);
-            } else if ("Personal".equalsIgnoreCase(ratingType) && movie.getRatingPersonal() == rating) {
-                searchResult.add(movie);
-            }
-        }
-        return searchResult;
-    }
 }

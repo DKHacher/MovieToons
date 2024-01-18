@@ -17,5 +17,4 @@ public interface IMovieDataAccess {
 
     public List<Movie> getMoviesByCategory(Category category) throws Exception;
 
-    public List<Movie> getMovieByRating(String ratingType, int rating) throws Exception;
 }
