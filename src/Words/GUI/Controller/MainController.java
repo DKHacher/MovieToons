@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     @FXML
-    private ChoiceBox ratingNumberChoiceBox;
+    private ChoiceBox ratingNumberChoiceBox, minChoiceBox, maxChoiceBox;
     @FXML
     private TableView<Movie> allMoviesTbl;
     @FXML
@@ -115,6 +115,8 @@ public class MainController implements Initializable {
     private void initializeChoiceBox() {
         ratingTypeChoiceBox.setItems(FXCollections.observableArrayList("Personal", "IMDB"));
         ratingNumberChoiceBox.setItems(FXCollections.observableArrayList("0", "1","2","3","4","5","6","7","8","9","10"));
+        minChoiceBox.setItems(FXCollections.observableArrayList("0", "1","2","3","4","5","6","7","8","9","10"));
+        maxChoicebox.setItems(FXCollections.observableArrayList("0", "1","2","3","4","5","6","7","8","9","10"));
     }
 
     private void moviesToDeleteInitialize() {
@@ -213,6 +215,21 @@ public class MainController implements Initializable {
         loadAllMovies(); // Load all movies instead of filtering by category
     }
 
+    @FXML
+    private void filterMoviesByRating() {
+        try {
+            String ratingType = (String) ratingTypeChoiceBox.getValue();
+            int minRating = Integer.parseInt((String) minChoiceBox.getValue());
+            int maxRating = Integer.parseInt((String) maxChoicebox.getValue());
+
+            List<Movie> filteredMovies = movieModel.getMoviesByRatingRange(ratingType, minRating, maxRating);
+            allMoviesTbl.setItems(FXCollections.observableArrayList(filteredMovies));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 
@@ -223,6 +240,14 @@ public class MainController implements Initializable {
             categoriesTbl.getSelectionModel().select(selectedCategory);
         }
         categoriesTbl.refresh();
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     private void loadAllMovies() {

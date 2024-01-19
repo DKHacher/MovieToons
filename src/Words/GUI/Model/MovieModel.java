@@ -62,11 +62,6 @@ public class MovieModel {
         moviesToBeViewed.addAll(searchResults);
     }
 
-    /*public void searchRating(int rating) throws Exception {
-        List<Movie> searchResults = movieManager.getMoviesByRating(allMovies, rating);
-        moviesToBeViewed.clear();
-        moviesToBeViewed.addAll(searchResults);
-    }*/
 
     public List<Movie> getMoviesByCategory(Category category) throws Exception {
         return movieManager.getMoviesByCategory(category);
@@ -86,5 +81,9 @@ public class MovieModel {
 
     public List<Movie> getMoviesByRating(String ratingType, int rating) throws Exception {
         return movieManager.getMoviesByRating(allMovies, ratingType, rating);
+    }
+
+    public List<Movie> getMoviesByRatingRange(String ratingType, int minRating, int maxRating) throws Exception {
+        return movieManager.getMoviesByRatingRange(allMovies, ratingType, minRating, maxRating);
     }
 }

@@ -63,4 +63,16 @@ public class MovieManager implements IMovieDataAccess {
         }
         return ResultList;
     }
+
+    public List<Movie> getMoviesByRatingRange(List<Movie> allMovies, String ratingType, int minRating, int maxRating) throws Exception {
+        List<Movie> resultList = new ArrayList<>();
+        for (Movie movie : allMovies) {
+            int movieRating = (ratingType.equals("IMDB")) ? movie.getRatingIMDB() : movie.getRatingPersonal();
+            if (movieRating >= minRating && movieRating <= maxRating) {
+                resultList.add(movie);
+            }
+        }
+        return resultList;
+    }
+
 }
