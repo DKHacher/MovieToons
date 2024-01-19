@@ -213,6 +213,10 @@ public class MainController implements Initializable {
         txtMovieSearch.clear();
         categoriesTbl.getSelectionModel().clearSelection();
         loadAllMovies(); // Load all movies instead of filtering by category
+        ratingTypeChoiceBox.getSelectionModel().clearSelection();
+        ratingNumberChoiceBox.getSelectionModel().clearSelection();
+        minChoiceBox.getSelectionModel().clearSelection();
+        maxChoiceBox.getSelectionModel().clearSelection();
     }
 
 
