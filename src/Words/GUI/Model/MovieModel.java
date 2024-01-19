@@ -62,6 +62,12 @@ public class MovieModel {
         moviesToBeViewed.addAll(searchResults);
     }
 
+    public void searchRating(int rating) throws Exception {
+        List<Movie> searchResults = movieManager.getMoviesByRating(allMovies, rating);
+        moviesToBeViewed.clear();
+        moviesToBeViewed.addAll(searchResults);
+    }
+
     public List<Movie> getMoviesByCategory(Category category) throws Exception {
         return movieManager.getMoviesByCategory(category);
     }
