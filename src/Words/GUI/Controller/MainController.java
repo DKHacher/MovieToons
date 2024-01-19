@@ -477,8 +477,6 @@ public class MainController implements Initializable {
         if (ratingNumberChoiceBox.getValue() != null && !ratingNumberChoiceBox.getValue().equals("") && ratingTypeChoiceBox.getValue() != null && !ratingTypeChoiceBox.getValue().equals("")) {
             List<Movie> moviesByRating = movieModel.getMoviesByRating(ratingTypeChoiceBox.getValue(), Integer.parseInt((String) ratingNumberChoiceBox.getValue()));
             allMoviesTbl.setItems(FXCollections.observableArrayList(moviesByRating));
-        } else {
-            loadAllMovies();
         }
     }
 
@@ -489,11 +487,9 @@ public class MainController implements Initializable {
             Integer minRating = (minChoiceBox.getValue() != null) ? Integer.parseInt((String) minChoiceBox.getValue()) : null;
             Integer maxRating = (maxChoiceBox.getValue() != null) ? Integer.parseInt((String) maxChoiceBox.getValue()) : null;
 
-            if (minRating != null && maxRating != null) {
+            if (minRating != null && maxRating != null && ratingType != null) {
                 List<Movie> filteredMovies = movieModel.getMoviesByRatingRange(ratingType, minRating, maxRating);
                 allMoviesTbl.setItems(FXCollections.observableArrayList(filteredMovies));
-            } else {
-                loadAllMovies();
             }
         } catch (Exception e) {
             e.printStackTrace();
