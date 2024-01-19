@@ -123,7 +123,7 @@
       <ChoiceBox fx:id="ratingNumberChoiceBox" layoutX="244.0" layoutY="14.0" onAction="#filterMoviesOnRating" prefHeight="26.0" prefWidth="68.0" />
       <Label layoutX="335.0" layoutY="19.0" text="Min:" textFill="WHITE" />
       <Label layoutX="417.0" layoutY="19.0" text="Max:" textFill="WHITE" />
-      <ChoiceBox fx:id="minChoiceBox" layoutX="363.0" layoutY="15.0" prefHeight="26.0" prefWidth="48.0" />
-      <ChoiceBox fx:id="maxChoiceBox" layoutX="447.0" layoutY="15.0" prefHeight="26.0" prefWidth="48.0" />
+      <ChoiceBox fx:id="minChoiceBox" layoutX="363.0" layoutY="15.0" onAction="#filterMoviesByRating" prefHeight="26.0" prefWidth="48.0" />
+      <ChoiceBox fx:id="maxChoiceBox" layoutX="447.0" layoutY="15.0" onAction="#filterMoviesByRating" prefHeight="26.0" prefWidth="48.0" />
    </children>
 </AnchorPane>

@@ -116,7 +116,7 @@ public class MainController implements Initializable {
         ratingTypeChoiceBox.setItems(FXCollections.observableArrayList("Personal", "IMDB"));
         ratingNumberChoiceBox.setItems(FXCollections.observableArrayList("0", "1","2","3","4","5","6","7","8","9","10"));
         minChoiceBox.setItems(FXCollections.observableArrayList("0", "1","2","3","4","5","6","7","8","9","10"));
-        maxChoicebox.setItems(FXCollections.observableArrayList("0", "1","2","3","4","5","6","7","8","9","10"));
+        maxChoiceBox.setItems(FXCollections.observableArrayList("0", "1","2","3","4","5","6","7","8","9","10"));
     }
 
     private void moviesToDeleteInitialize() {
@@ -215,19 +215,7 @@ public class MainController implements Initializable {
         loadAllMovies(); // Load all movies instead of filtering by category
     }
 
-    @FXML
-    private void filterMoviesByRating() {
-        try {
-            String ratingType = (String) ratingTypeChoiceBox.getValue();
-            int minRating = Integer.parseInt((String) minChoiceBox.getValue());
-            int maxRating = Integer.parseInt((String) maxChoicebox.getValue());
 
-            List<Movie> filteredMovies = movieModel.getMoviesByRatingRange(ratingType, minRating, maxRating);
-            allMoviesTbl.setItems(FXCollections.observableArrayList(filteredMovies));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
 
@@ -487,6 +475,24 @@ public class MainController implements Initializable {
             allMoviesTbl.setItems(FXCollections.observableArrayList(moviesByRating));
         } else {
             loadAllMovies();
+        }
+    }
+
+    @FXML
+    private void filterMoviesByRating(ActionEvent actionEvent) {
+        try {
+            String ratingType = ratingTypeChoiceBox.getValue();
+            Integer minRating = (minChoiceBox.getValue() != null) ? Integer.parseInt((String) minChoiceBox.getValue()) : null;
+            Integer maxRating = (maxChoiceBox.getValue() != null) ? Integer.parseInt((String) maxChoiceBox.getValue()) : null;
+
+            if (minRating != null && maxRating != null) {
+                List<Movie> filteredMovies = movieModel.getMoviesByRatingRange(ratingType, minRating, maxRating);
+                allMoviesTbl.setItems(FXCollections.observableArrayList(filteredMovies));
+            } else {
+                loadAllMovies();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
